@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "esnext", "module": "ESNext", "moduleResolution": "bundler", "lib": ["ESNext", "DOM"],
+    "strict": true, "esModuleInterop": true, "skipLibCheck": true, "types": []
+  },
+  "include": ["main.ts"]
+}

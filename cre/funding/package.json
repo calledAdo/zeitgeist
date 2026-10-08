@@ -1,0 +1,22 @@
+{
+  "name": "zeitgeist-funding-workflow",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "bun test",
+    "simulate": "cre workflow simulate funding -T local -R ..",
+    "simulate:testnet": "cre workflow simulate funding -T testnet -R .. --broadcast"
+  },
+  "dependencies": {
+    "@chainlink/cre-sdk": "1.23.0",
+    "viem": "2.54.2",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/bun": "1.2.21"
+  }
+}

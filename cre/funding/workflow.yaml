@@ -1,0 +1,20 @@
+# local   : simulate against the local anvil demo chain (no CRE login needed for a dry run)
+# testnet : simulate --broadcast against live Monad testnet 10143 through the MockKeystoneForwarder
+local:
+  user-workflow:
+    workflow-name: "zeitgeist-funding"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.local.json"
+testnet:
+  user-workflow:
+    workflow-name: "zeitgeist-funding"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.testnet.json"
+fork:
+  user-workflow:
+    workflow-name: "zeitgeist-funding"
+  workflow-artifacts:
+    workflow-path: "./main.ts"
+    config-path: "./config.fork.json"

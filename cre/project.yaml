@@ -1,0 +1,13 @@
+# CRE project settings (RPC per target). http:// is accepted only for loopback hosts.
+local:
+  rpcs:
+    - chain-name: monad-testnet
+      url: http://127.0.0.1:8545
+testnet:
+  rpcs:
+    - chain-name: monad-testnet
+      url: https://testnet-rpc.monad.xyz
+fork:
+  rpcs:
+    - chain-name: monad-testnet
+      url: http://127.0.0.1:8546
