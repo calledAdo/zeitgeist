@@ -1,0 +1,138 @@
+{
+ "registryVersion": "2026-10-08.2",
+ "registryDigest": "73673beef6220781a69c53c9634034e0e09292e3c7d7c263b82e477ae93395f5",
+ "categories": [
+  {
+   "key": "geopolitics",
+   "label": "Geopolitics",
+   "names": [
+    "Donald Trump",
+    "Narendra Modi",
+    "Xi Jinping",
+    "Vladimir Putin",
+    "Mark Carney",
+    "Benjamin Netanyahu",
+    "Volodymyr Zelensky",
+    "Friedrich Merz",
+    "Emmanuel Macron",
+    "Javier Milei",
+    "Keir Starmer",
+    "Cyril Ramaphosa",
+    "Recep Tayyip Erdogan"
+   ],
+   "symbols": [
+    "ZG-TRUMP",
+    "ZG-MODI",
+    "ZG-XI",
+    "ZG-PUTIN",
+    "ZG-CARNEY",
+    "ZG-NETANYAH",
+    "ZG-ZELENSKY",
+    "ZG-MERZ",
+    "ZG-MACRON",
+    "ZG-MILEI",
+    "ZG-STARMER",
+    "ZG-RAMAPHOS",
+    "ZG-ERDOGAN"
+   ],
+   "keys": [
+    "trump",
+    "modi",
+    "xi",
+    "putin",
+    "carney",
+    "netanyahu",
+    "zelensky",
+    "merz",
+    "macron",
+    "milei",
+    "starmer",
+    "ramaphosa",
+    "erdogan"
+   ]
+  },
+  {
+   "key": "tech_companies",
+   "label": "Tech Companies",
+   "names": [
+    "Apple",
+    "OpenAI",
+    "Amazon",
+    "Netflix",
+    "Anthropic",
+    "Meta",
+    "Google",
+    "Nvidia",
+    "Microsoft",
+    "Samsung",
+    "Tesla",
+    "TikTok",
+    "Huawei",
+    "AMD"
+   ],
+   "symbols": [
+    "ZG-APPLE",
+    "ZG-OPENAI",
+    "ZG-AMAZON",
+    "ZG-NETFLIX",
+    "ZG-ANTHROPI",
+    "ZG-META",
+    "ZG-GOOGLE",
+    "ZG-NVIDIA",
+    "ZG-MICROSOF",
+    "ZG-SAMSUNG",
+    "ZG-TESLA",
+    "ZG-TIKTOK",
+    "ZG-HUAWEI",
+    "ZG-AMD"
+   ],
+   "keys": [
+    "apple",
+    "openai",
+    "amazon",
+    "netflix",
+    "anthropic",
+    "meta",
+    "google",
+    "nvidia",
+    "microsoft",
+    "samsung",
+    "tesla",
+    "tiktok",
+    "huawei",
+    "amd"
+   ]
+  },
+  {
+   "key": "tech_personalities",
+   "label": "Tech Personalities",
+   "names": [
+    "Mark Zuckerberg",
+    "Elon Musk",
+    "Dario Amodei",
+    "Sam Altman",
+    "Bill Gates",
+    "Tim Cook",
+    "Jensen Huang"
+   ],
+   "symbols": [
+    "ZG-ZUCKERBE",
+    "ZG-MUSK",
+    "ZG-AMODEI",
+    "ZG-ALTMAN",
+    "ZG-GATES",
+    "ZG-COOK",
+    "ZG-HUANG"
+   ],
+   "keys": [
+    "zuckerberg",
+    "musk",
+    "amodei",
+    "altman",
+    "gates",
+    "cook",
+    "huang"
+   ]
+  }
+ ]
+}
