@@ -1,0 +1,63 @@
+# Zeitgeist keeper: keeps the live testnet app fresh without anyone's laptop.
+#  1. restore the indexer database from Vercel Blob
+#  2. ingest new GDELT files, compute the snapshot, targets and headline notes
+#  3. publish them (and the database) to Vercel Blob, where the app and the CRE workflow read them
+#  4. run the Chainlink CRE funding workflow: official simulator when CRE_API_KEY is set, otherwise the
+#     labelled harness through Chainlink's MockKeystoneForwarder. Either way it only sends when a funding
+#     round is due or the last post is older than 8h.
+# Secrets: BLOB_READ_WRITE_TOKEN, KEEPER_PRIVATE_KEY (small testnet wallet); optional CRE_API_KEY, MOONSHOT_API_KEY.
+name: keeper
+on:
+  schedule:
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: keeper
+  cancel-in-progress: false
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      STATE_URL: https://djh6oqrefxeznt8j.public.blob.vercel-storage.com/state/zeitgeist.sqlite
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: oven-sh/setup-bun@v2
+      - name: Restore indexer state
+        run: mkdir -p indexer/data && curl -fsSL "$STATE_URL?ts=$(date +%s)" -o indexer/data/zeitgeist.sqlite
+      - name: Ingest GDELT and compute
+        working-directory: indexer
+        env:
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+        run: |
+          uv run zg ingest --latest --workers 8
+          uv run zg snapshot
+          uv run zg explain
+      - name: Publish to Vercel Blob
+        env:
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
+        run: |
+          cd ops && bun install --frozen-lockfile && cd ..
+          node ops/blob-put.mjs \
+            indexer/out/latest.json:data/snapshot.json \
+            indexer/out/targets.json:data/targets.json \
+            indexer/out/explain.json:data/explain.json \
+            indexer/data/zeitgeist.sqlite:state/zeitgeist.sqlite
+      - name: Funding workflow (Chainlink CRE)
+        working-directory: cre
+        env:
+          CRE_API_KEY: ${{ secrets.CRE_API_KEY }}
+          KEEPER_PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
+        run: |
+          cd funding && bun install --frozen-lockfile && cd ..
+          if [ -n "$CRE_API_KEY" ]; then
+            curl -sSL https://app.chain.link/cre/install.sh | bash
+            export PATH="$HOME/.cre/bin:$PATH"
+            if cre whoami >/dev/null 2>&1; then
+              CRE_ETH_PRIVATE_KEY="$KEEPER_PRIVATE_KEY" cre workflow simulate funding -T testnet --non-interactive --trigger-index 0 --broadcast
+              exit 0
+            fi
+            echo "CRE_API_KEY did not authenticate (needs CRE Early Access); using the harness"
+          fi
+          cd funding && bun keeper-send.ts config.testnet.json

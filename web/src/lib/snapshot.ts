@@ -36,7 +36,7 @@ export function useSnapshot() {
   useEffect(() => {
     let live = true;
     const load = () =>
-      fetch("/snapshot.json", { cache: "no-store" })
+      fetch(`${process.env.NEXT_PUBLIC_DATA_URL ?? ""}/snapshot.json`, { cache: "no-store" })
         .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`snapshot ${r.status}`))))
         .then((s) => live && (setSnap(s), setError(null)))
         .catch((e) => live && setError(String(e.message ?? e)));

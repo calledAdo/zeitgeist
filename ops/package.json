@@ -1,0 +1,7 @@
+{
+  "name": "zeitgeist-ops",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "dependencies": { "@vercel/blob": "2.3.3" }
+}

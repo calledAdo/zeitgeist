@@ -13,7 +13,7 @@ export function useExplain() {
   const [d, setD] = useState<Explain | null>(null);
   useEffect(() => {
     let live = true;
-    const load = () => fetch("/explain.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((j) => live && j && setD(j)).catch(() => {});
+    const load = () => fetch(`${process.env.NEXT_PUBLIC_DATA_URL ?? ""}/explain.json`, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((j) => live && j && setD(j)).catch(() => {});
     load();
     const t = setInterval(load, 120_000);
     return () => { live = false; clearInterval(t); };

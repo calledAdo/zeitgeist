@@ -1,7 +1,7 @@
 {
   "schedule": "0 */15 * * * *",
   "chainSelectorName": "monad-testnet",
-  "targetsUrl": "http://localhost:3000/targets.json",
+  "targetsUrl": "https://djh6oqrefxeznt8j.public.blob.vercel-storage.com/data/targets.json",
   "gdeltLastUpdateUrl": "https://data.gdeltproject.org/gdeltv2/lastupdate.txt",
   "receiver": "0xc29BA4Aa390458e8aCf45345a8e7839d7FCDf444",
   "oracle": "0xa7C20382968C1dbC81B1Bf3A00691868941F0b01",
