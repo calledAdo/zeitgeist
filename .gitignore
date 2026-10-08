@@ -1,0 +1,23 @@
+# indexer
+indexer/data/
+indexer/out/
+indexer/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# contracts
+contracts/out/
+contracts/cache/
+contracts/broadcast/*/31337/
+# env
+.env
+.DS_Store
+# js
+node_modules/
+.envio/
+envio/generated/
+contracts/broadcast/*/10143/
+contracts/deployments/*-fork.json
+cre/funding/config.fork.json
+llmtimeline/
+cre/funding/.cre_build_tmp.js
