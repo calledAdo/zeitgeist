@@ -42,13 +42,13 @@ Monad:  KeystoneForwarder → ZeitgeistReceiver → AttentionOracle → Category
                                               ▼
                                    Envio HyperIndex (GraphQL)
                                               │
-                Next.js app (Mera passkey accounts) ◄── Kimi notes on the biggest movers
+                Next.js app (Mera passkey accounts) ◄── matched headlines for the biggest movers
 ```
 
 | Folder | What |
 |---|---|
 | [`contracts/`](contracts) | Solidity (Foundry). Markets, oracle, ve layer, CRE receiver, sealed calls. 26 tests incl. invariants. |
-| [`indexer/`](indexer) | GDELT attention oracle: counting, character, heat, targets, inputs hash; keeper; Kimi explainer. |
+| [`indexer/`](indexer) | GDELT attention oracle: counting, character, heat, targets, inputs hash; keeper; headline explainer (optional LLM notes). |
 | [`cre/`](cre) | Chainlink CRE funding workflow, tests, local harness, simulation evidence. |
 | [`envio/`](envio) | Envio HyperIndex: listings, price history, positions/PnL, funding rounds, votes, sealed calls. |
 | [`web/`](web) | Next.js app: markets, trade panel, activity, calls, vote, portfolio. |
@@ -60,7 +60,6 @@ Monad:  KeystoneForwarder → ZeitgeistReceiver → AttentionOracle → Category
 | **Chainlink CRE** | The funding workflow is the orchestration layer: cron → fetch targets + GDELT's published md5 (identical consensus) → read epochs on Monad → signed report → receiver posts targets, funds, collects fees, triggers emissions. Simulated and broadcast through Chainlink's forwarder on a Monad testnet fork ([evidence](cre/evidence/2026-10-08-fork-broadcast.md)). |
 | **Envio** | HyperIndex indexes every contract; powers price charts with funding steps, PnL, leaderboard, funding-round history with input fingerprints, and decrypts revealed sealed calls. |
 | **Mera** (Monad Foundation) | The entire account layer: one passkey prompt → PRF → account; scoped prompt-free signing session (re-prompt for locks, votes, bribes, or buys past $1,000); identity rebuilt from the passkey on a fresh device. **One Passkey, Many Keys:** a separate PRF namespace derives per-call AES keys for sealed calls. |
-| **Kimi** (Moonshot AI) | Kimi K2.6 writes "why it's moving" notes for each category's biggest movers, from matched headlines only. Display only, never in the price. |
 
 ## Why Monad
 
@@ -85,7 +84,7 @@ Then, optionally:
 cd envio && bun install && node gen-config.mjs 31337 && npx envio dev     # indexer at :8080
 cd cre/funding && bun install && bun test && node gen-config.mjs local 31337 http://localhost:3000/targets.json
 cre workflow simulate funding -T local -R ..                                 # needs `cre login`
-cd indexer && MOONSHOT_API_KEY=... uv run zg explain && cd ../web && npm run sync
+cd indexer && uv run zg explain && cd ../web && npm run sync     # headlines; MOONSHOT_API_KEY adds Kimi notes
 ```
 
 Indexer commands: `uv run zg ingest --latest`, `zg snapshot`, `zg report`, `zg candidates`, `zg keeper`.

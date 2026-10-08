@@ -5,6 +5,11 @@ const here = import.meta.dirname;
 const root = path.resolve(here, "../..");
 const gen = path.resolve(here, "../src/generated");
 fs.mkdirSync(gen, { recursive: true });
+// On a hosted build (e.g. Vercel, web/ only) the monorepo isn't there: keep the committed generated files.
+if (!fs.existsSync(`${root}/contracts/out`)) {
+  console.log("sync: no contracts/ build here, using committed src/generated and public/*.json");
+  process.exit(0);
+}
 const abis = {};
 for (const c of ["CategoryMarket", "EntityToken", "EntityGauge", "CategoryVoter", "VotingEscrow", "Zeit", "TestUSDC", "Minter", "SealedCalls"]) {
   abis[c] = JSON.parse(fs.readFileSync(`${root}/contracts/out/${c}.sol/${c}.json`, "utf8")).abi;
