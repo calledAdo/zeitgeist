@@ -1,0 +1,22 @@
+[project]
+name = "zeitgeist-indexer"
+version = "0.1.0"
+description = "GDELT attention oracle for Zeitgeist: unique-story counts, EWMA attention, character-relative heat and funding targets."
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+zg = "zeitgeist_indexer.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["zeitgeist_indexer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,518 @@
+{
+  "version": "2026-10-08.2",
+  "notes": "Person rule (IDEATION_SOCIALFI §17.1): full name in V2Persons (or AllNames when allnames=true) with offset < 300, OR surname in title AND full name anywhere. Company rule (§15.2): tier A = name in title; tier B = canonical form in title, or name + sector token in title. Never the GDELT org field. GDELT truncates names at non-ASCII letters (e.g. 'recep tayyip erdo'), so truncated forms are listed as aliases; names and titles are accent-folded. Person centrality offset raised 300→500 (IDEATION §17.1 measured 82% precision / 94% recall at 500). Entities with an 'index' are listed on-chain in that slot (append-only); the rest are a watchlist. Heat is computed from GDELT news alone.",
+  "categories": {
+    "geopolitics": {
+      "label": "Geopolitics",
+      "kind": "person",
+      "entities": {
+        "trump": {
+          "name": "Donald Trump",
+          "full": [
+            "donald trump",
+            "donald j trump"
+          ],
+          "surname": "trump",
+          "index": 0
+        },
+        "putin": {
+          "name": "Vladimir Putin",
+          "full": [
+            "vladimir putin"
+          ],
+          "surname": "putin",
+          "index": 3
+        },
+        "xi": {
+          "name": "Xi Jinping",
+          "full": [
+            "xi jinping"
+          ],
+          "surname": "xi jinping",
+          "index": 2
+        },
+        "modi": {
+          "name": "Narendra Modi",
+          "full": [
+            "narendra modi"
+          ],
+          "surname": "modi",
+          "index": 1
+        },
+        "macron": {
+          "name": "Emmanuel Macron",
+          "full": [
+            "emmanuel macron"
+          ],
+          "surname": "macron",
+          "index": 8
+        },
+        "starmer": {
+          "name": "Keir Starmer",
+          "full": [
+            "keir starmer"
+          ],
+          "surname": "starmer",
+          "index": 10
+        },
+        "zelensky": {
+          "name": "Volodymyr Zelensky",
+          "full": [
+            "volodymyr zelensky",
+            "volodymyr zelenskyy",
+            "volodymyr zelenskiy"
+          ],
+          "surname": "zelensky",
+          "index": 6
+        },
+        "netanyahu": {
+          "name": "Benjamin Netanyahu",
+          "full": [
+            "benjamin netanyahu"
+          ],
+          "surname": "netanyahu",
+          "index": 5
+        },
+        "erdogan": {
+          "name": "Recep Tayyip Erdogan",
+          "full": [
+            "recep tayyip erdogan",
+            "tayyip erdogan",
+            "tayyip erdo"
+          ],
+          "surname": "erdogan",
+          "index": 12
+        },
+        "lula": {
+          "name": "Lula da Silva",
+          "full": [
+            "luiz inacio lula da silva",
+            "lula da silva",
+            "inacio lula",
+            "luiz in"
+          ],
+          "surname": "lula"
+        },
+        "milei": {
+          "name": "Javier Milei",
+          "full": [
+            "javier milei"
+          ],
+          "surname": "milei",
+          "index": 9
+        },
+        "carney": {
+          "name": "Mark Carney",
+          "full": [
+            "mark carney"
+          ],
+          "surname": "carney",
+          "index": 4
+        },
+        "merz": {
+          "name": "Friedrich Merz",
+          "full": [
+            "friedrich merz"
+          ],
+          "surname": "merz",
+          "index": 7
+        },
+        "meloni": {
+          "name": "Giorgia Meloni",
+          "full": [
+            "giorgia meloni"
+          ],
+          "surname": "meloni"
+        },
+        "kim": {
+          "name": "Kim Jong Un",
+          "full": [
+            "kim jong un",
+            "kim jong-un"
+          ],
+          "surname": "kim jong"
+        },
+        "mbs": {
+          "name": "Mohammed bin Salman",
+          "full": [
+            "mohammed bin salman",
+            "mohammad bin salman",
+            "muhammad bin salman"
+          ],
+          "surname": "bin salman"
+        },
+        "sheinbaum": {
+          "name": "Claudia Sheinbaum",
+          "full": [
+            "claudia sheinbaum"
+          ],
+          "surname": "sheinbaum"
+        },
+        "ramaphosa": {
+          "name": "Cyril Ramaphosa",
+          "full": [
+            "cyril ramaphosa"
+          ],
+          "surname": "ramaphosa",
+          "index": 11
+        }
+      }
+    },
+    "tech_companies": {
+      "label": "Tech Companies",
+      "kind": "company",
+      "entities": {
+        "openai": {
+          "name": "OpenAI",
+          "tier": "A",
+          "title": [
+            "openai",
+            "chatgpt"
+          ],
+          "index": 1
+        },
+        "anthropic": {
+          "name": "Anthropic",
+          "tier": "A",
+          "title": [
+            "anthropic"
+          ],
+          "index": 4
+        },
+        "nvidia": {
+          "name": "Nvidia",
+          "tier": "A",
+          "title": [
+            "nvidia"
+          ],
+          "index": 7
+        },
+        "microsoft": {
+          "name": "Microsoft",
+          "tier": "A",
+          "title": [
+            "microsoft"
+          ],
+          "index": 8
+        },
+        "google": {
+          "name": "Google",
+          "tier": "A",
+          "title": [
+            "google",
+            "alphabet inc"
+          ],
+          "block": [
+            "google maps directions"
+          ],
+          "index": 6
+        },
+        "amazon": {
+          "name": "Amazon",
+          "tier": "A",
+          "title": [
+            "amazon",
+            "aws"
+          ],
+          "block": [
+            "amazon rainforest",
+            "amazon river",
+            "amazonia"
+          ],
+          "index": 2
+        },
+        "tesla": {
+          "name": "Tesla",
+          "tier": "A",
+          "title": [
+            "tesla"
+          ],
+          "block": [
+            "nikola tesla"
+          ],
+          "index": 10
+        },
+        "netflix": {
+          "name": "Netflix",
+          "tier": "A",
+          "title": [
+            "netflix"
+          ],
+          "index": 3
+        },
+        "tsmc": {
+          "name": "TSMC",
+          "tier": "A",
+          "title": [
+            "tsmc",
+            "taiwan semiconductor"
+          ]
+        },
+        "samsung": {
+          "name": "Samsung",
+          "tier": "A",
+          "title": [
+            "samsung"
+          ],
+          "index": 9
+        },
+        "amd": {
+          "name": "AMD",
+          "tier": "A",
+          "title": [
+            "amd"
+          ],
+          "index": 13
+        },
+        "huawei": {
+          "name": "Huawei",
+          "tier": "A",
+          "title": [
+            "huawei"
+          ],
+          "index": 12
+        },
+        "tiktok": {
+          "name": "TikTok",
+          "tier": "A",
+          "title": [
+            "tiktok",
+            "bytedance"
+          ],
+          "index": 11
+        },
+        "apple": {
+          "name": "Apple",
+          "tier": "B",
+          "title": [
+            "apple"
+          ],
+          "canonical": [
+            "apple inc",
+            "iphone",
+            "ipad",
+            "macbook",
+            "tim cook",
+            "app store",
+            "apple watch",
+            "vision pro"
+          ],
+          "sector": [
+            "iphone",
+            "ios",
+            "mac",
+            "app",
+            "tech",
+            "chip",
+            "stock",
+            "shares",
+            "earnings",
+            "ai",
+            "store",
+            "device",
+            "launch",
+            "antitrust",
+            "billion"
+          ],
+          "block": [
+            "apple pie",
+            "apple cider",
+            "big apple"
+          ],
+          "index": 0
+        },
+        "meta": {
+          "name": "Meta",
+          "tier": "B",
+          "title": [
+            "meta"
+          ],
+          "canonical": [
+            "meta platforms",
+            "facebook",
+            "instagram",
+            "whatsapp",
+            "zuckerberg",
+            "threads app"
+          ],
+          "sector": [
+            "ai",
+            "facebook",
+            "instagram",
+            "whatsapp",
+            "zuckerberg",
+            "stock",
+            "shares",
+            "earnings",
+            "app",
+            "smart glasses",
+            "llama",
+            "social media",
+            "advertis"
+          ],
+          "index": 5
+        },
+        "intel": {
+          "name": "Intel",
+          "tier": "B",
+          "title": [
+            "intel"
+          ],
+          "canonical": [
+            "intel corp",
+            "intel's",
+            "intel chips"
+          ],
+          "sector": [
+            "chip",
+            "semiconductor",
+            "foundry",
+            "processor",
+            "cpu",
+            "stock",
+            "shares",
+            "earnings",
+            "fab"
+          ],
+          "block": [
+            "house intel",
+            "intel committee",
+            "intel panel"
+          ]
+        }
+      }
+    },
+    "tech_personalities": {
+      "label": "Tech Personalities",
+      "kind": "person",
+      "entities": {
+        "musk": {
+          "name": "Elon Musk",
+          "full": [
+            "elon musk"
+          ],
+          "surname": "musk",
+          "allnames": false,
+          "index": 1
+        },
+        "altman": {
+          "name": "Sam Altman",
+          "full": [
+            "sam altman"
+          ],
+          "surname": "altman",
+          "index": 3
+        },
+        "zuckerberg": {
+          "name": "Mark Zuckerberg",
+          "full": [
+            "mark zuckerberg"
+          ],
+          "surname": "zuckerberg",
+          "index": 0
+        },
+        "huang": {
+          "name": "Jensen Huang",
+          "full": [
+            "jensen huang"
+          ],
+          "surname": "jensen huang",
+          "index": 6
+        },
+        "cook": {
+          "name": "Tim Cook",
+          "full": [
+            "tim cook"
+          ],
+          "surname": "tim cook",
+          "index": 5
+        },
+        "pichai": {
+          "name": "Sundar Pichai",
+          "full": [
+            "sundar pichai"
+          ],
+          "surname": "pichai"
+        },
+        "nadella": {
+          "name": "Satya Nadella",
+          "full": [
+            "satya nadella"
+          ],
+          "surname": "nadella"
+        },
+        "amodei": {
+          "name": "Dario Amodei",
+          "full": [
+            "dario amodei"
+          ],
+          "surname": "amodei",
+          "index": 2
+        },
+        "bezos": {
+          "name": "Jeff Bezos",
+          "full": [
+            "jeff bezos"
+          ],
+          "surname": "bezos"
+        },
+        "gates": {
+          "name": "Bill Gates",
+          "full": [
+            "bill gates"
+          ],
+          "surname": "bill gates",
+          "index": 4
+        },
+        "hassabis": {
+          "name": "Demis Hassabis",
+          "full": [
+            "demis hassabis"
+          ],
+          "surname": "hassabis"
+        },
+        "su": {
+          "name": "Lisa Su",
+          "full": [
+            "lisa su"
+          ],
+          "surname": "lisa su"
+        },
+        "ellison": {
+          "name": "Larry Ellison",
+          "full": [
+            "larry ellison"
+          ],
+          "surname": "ellison"
+        },
+        "thiel": {
+          "name": "Peter Thiel",
+          "full": [
+            "peter thiel"
+          ],
+          "surname": "thiel"
+        },
+        "son": {
+          "name": "Masayoshi Son",
+          "full": [
+            "masayoshi son"
+          ],
+          "surname": "masayoshi son"
+        }
+      }
+    }
+  },
+  "pr_wire_domains": [
+    "prnewswire.com",
+    "globenewswire.com",
+    "businesswire.com",
+    "accesswire.com",
+    "einpresswire.com",
+    "newswire.ca",
+    "prweb.com",
+    "openpr.com",
+    "issuewire.com",
+    "newsfilecorp.com"
+  ],
+  "person_offset_max": 500
+}
