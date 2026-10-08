@@ -195,6 +195,9 @@ def candidates(args) -> None:
             print(f"  - listed but below gate ({e['reason']}): {e['name']} ({e['character']['per_day']:.0f}/day) — gets no target until it recovers")
 
 
+EXPLAIN_EVERY_S = 3600
+
+
 def keeper(args) -> None:
     """Loop: ingest new files, post, fund. Runs forever."""
     import time
@@ -202,7 +205,9 @@ def keeper(args) -> None:
         try:
             ingest(argparse.Namespace(db=args.db, latest=True, hours=None, days=0, every=1, workers=4, recount=False))
             snapshot(argparse.Namespace(db=args.db, at=None, out=str(ROOT / "out" / "latest.json")))
-            explain_cmd(argparse.Namespace(db=args.db, out=str(ROOT / "out" / "explain.json")))
+            exp = ROOT / "out" / "explain.json"
+            if not exp.exists() or time.time() - exp.stat().st_mtime > EXPLAIN_EVERY_S:  # paid API: not every loop
+                explain_cmd(argparse.Namespace(db=args.db, out=str(exp)))
             post(args)
         except Exception as e:  # keep the keeper alive through network blips
             print(f"keeper error: {e}", flush=True)
