@@ -33,6 +33,8 @@ class Article:
     title: str                         # normalized: lowercase, punctuation collapsed to spaces
     persons: tuple[tuple[str, int], ...]   # V2Persons (name, char offset)
     allnames: tuple[tuple[str, int], ...]  # AllNames (name, char offset)
+    raw_title: str = ""                # original headline, display only (never counted or hashed)
+    url: str = ""
 
 
 @dataclass(frozen=True)
@@ -128,11 +130,12 @@ def parse(data: bytes) -> tuple[Article, ...]:
         if len(r) <= C_EXTRAS:
             continue
         m = _TITLE.search(r[C_EXTRAS])
-        title = normalize_title(m.group(1)) if m else ""
+        raw = html.unescape(m.group(1)).strip() if m else ""
+        title = normalize_title(raw) if raw else ""
         if not title:
             # fall back to the URL slug so the article still dedups consistently
             title = normalize_title(r[C_URL].rsplit("/", 1)[-1] or r[C_URL])
-        arts.append(Article(r[C_DOMAIN].lower(), title, _names(r[C_V2PERSONS]), _names(r[C_ALLNAMES])))
+        arts.append(Article(r[C_DOMAIN].lower(), title, _names(r[C_V2PERSONS]), _names(r[C_ALLNAMES]), raw[:300], r[C_URL][:500]))
     return tuple(arts)
 
 

@@ -1,0 +1,493 @@
+{
+ "as_of": "20261008221500",
+ "model": null,
+ "categories": {
+  "geopolitics": {
+   "digest": null,
+   "entities": {
+    "xi": {
+     "heat": -1.8613263384964038,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Xi Jinping's State Visit to the U.S.—Potential for a Strategic Shift",
+       "url": "https://larouchepub.com/other/2026/5339-xi_jinping_s_state_visit_to_th.html",
+       "domain": "larouchepub.com"
+      },
+      {
+       "title": "America's Best Answer to the China-Russia Alliance",
+       "url": "https://foreignpolicy.com/2026/10/08/russia-china-alliance-united-states-xi-putin/?tpcc=recirc_trending062921",
+       "domain": "foreignpolicy.com"
+      },
+      {
+       "title": "The China-U.S. AI Race Is Playing Out Worldwide",
+       "url": "https://foreignpolicy.com/2026/10/07/china-us-open-source-ai-race-government-adoption/?tpcc=recirc_trending062921",
+       "domain": "foreignpolicy.com"
+      }
+     ]
+    },
+    "merz": {
+     "heat": 1.0195790341464286,
+     "why": null,
+     "headlines": [
+      {
+       "title": "UK 'open' to Germany joining next generation fighter jet programme, says Burnham",
+       "url": "https://www.countytimes.co.uk/news/national/26619109.uk-open-germany-joining-next-generation-fighter-jet-programme-says-burnham/",
+       "domain": "countytimes.co.uk"
+      },
+      {
+       "title": "Chancellor Merz: Germany stands firmly on Israel's side",
+       "url": "https://www.jpost.com/israel-news/article-911098",
+       "domain": "jpost.com"
+      },
+      {
+       "title": "Newscast - Andrew Mountbatten-Windsor Search Warrants Unlawful",
+       "url": "https://www.bbc.co.uk/sounds/play/curation/m001bm45/p0pf3l2p",
+       "domain": "bbc.co.uk"
+      },
+      {
+       "title": "Andy Burnham responds to reports of plague death in Russia",
+       "url": "https://www.times-series.co.uk/news/national/uk-today/26620144.andy-burnham-responds-reports-plague-death-russia/",
+       "domain": "times-series.co.uk"
+      },
+      {
+       "title": "Merz turned into Ukrainian chancellor  Moscow",
+       "url": "http://www.europesun.com/news/279360562/merz-turned-into-ukrainian-chancellor-moscow",
+       "domain": "europesun.com"
+      },
+      {
+       "title": "Merz turned into 'Ukrainian chancellor'",
+       "url": "http://www.europesun.com/news/279360566/merz-turned-into-ukrainian-chancellor-moscow",
+       "domain": "europesun.com"
+      },
+      {
+       "title": "PM meeting with Chancellor Merz of Germany: 8 October 2026",
+       "url": "https://www.gov.uk/government/news/pm-meeting-with-chancellor-merz-of-germany-8-october-2026",
+       "domain": "gov.uk"
+      },
+      {
+       "title": "Andy Burnham responds to reports of plague death in Russia | Maldon and Burnham Standard",
+       "url": "https://www.maldonandburnhamstandard.co.uk/news/national/uk-today/26620144.andy-burnham-responds-reports-plague-death-russia/",
+       "domain": "maldonandburnhamstandard.co.uk"
+      }
+     ]
+    },
+    "trump": {
+     "heat": -0.7310008605828608,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Trump honours Elon Musk with National Medal of Science, calls him",
+       "url": "http://www.greekherald.com/news/279360540/trump-honours-elon-musk-with-national-medal-of-science-calls-him-modern-day-thomas-edison",
+       "domain": "greekherald.com"
+      },
+      {
+       "title": "President Trump Demands 'Super Intelligence' Term For AI",
+       "url": "https://570wkbn.iheart.com/content/2026-10-08-president-trump-demands-super-intelligence-term-for-ai/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Nasdaq dives 376 points on Iran war twists and turns",
+       "url": "http://www.sanantoniopost.com/news/279360494/nasdaq-dives-376-points-on-iran-war-twists-and-turns",
+       "domain": "sanantoniopost.com"
+      },
+      {
+       "title": "Trump says comment that Iran could 'take out' Los Angeles was misinterpreted | WTVB | 1590 AM · 95.5 FM",
+       "url": "https://wtvbam.com/2026/10/08/trump-says-comment-that-iran-could-take-out-los-angeles-was-misinterpreted/",
+       "domain": "wtvbam.com"
+      },
+      {
+       "title": "Trump administration suspends Microsoft from visa program over fraud concerns",
+       "url": "https://homenewshere.com/national/news/article_15839332-6d42-5763-9582-6d6ecdc6f726.html",
+       "domain": "homenewshere.com"
+      },
+      {
+       "title": "Trump says comment that Iran could 'take out' Los Angeles was misinterpreted | 104.1 WIKY",
+       "url": "https://wiky.com/2026/10/08/trump-says-comment-that-iran-could-take-out-los-angeles-was-misinterpreted/",
+       "domain": "wiky.com"
+      },
+      {
+       "title": "Who Is Natalie Harp? What to Know About Trump's Aide",
+       "url": "https://radaronline.com/p/who-is-natalie-harp-trump-aide-unhealthy-bond/",
+       "domain": "radaronline.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others",
+       "url": "https://kfbk.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      }
+     ]
+    },
+    "macron": {
+     "heat": -0.6572251940615311,
+     "why": null,
+     "headlines": [
+      {
+       "title": "SA foreign service is becoming a haven for failed ministers",
+       "url": "https://www.dailymaverick.co.za/opinionista/2026-10-08-sas-foreign-service-is-becoming-a-retreat-for-failed-ministers/",
+       "domain": "dailymaverick.co.za"
+      },
+      {
+       "title": "New Sri Lankan envoy to France warned against 'untimely' universal jurisdiction",
+       "url": "https://www.tamilguardian.com/content/sri-lankan-ambassador-presents-credentials-macron-discusses-closer-bilateral-ties",
+       "domain": "tamilguardian.com"
+      },
+      {
+       "title": "Benin demands France return cultural treasures",
+       "url": "http://www.nigeriasun.com/news/279359587/benin-demands-france-return-cultural-treasures",
+       "domain": "nigeriasun.com"
+      },
+      {
+       "title": "News | CEI",
+       "url": "https://www.cei.int/ansa/181241",
+       "domain": "cei.int"
+      }
+     ]
+    }
+   }
+  },
+  "tech_companies": {
+   "digest": null,
+   "entities": {
+    "microsoft": {
+     "heat": 2.5036398203476575,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Microsoft's Satya Nadella's White House Award Comes at Awkward Time",
+       "url": "https://www.businessinsider.com/microsoft-satya-nadella-white-house-award-visa-suspended-2026-10",
+       "domain": "businessinsider.com"
+      },
+      {
+       "title": "The Trump administration is suspending Microsoft from a green card program, alleging fraud",
+       "url": "https://www.union-bulletin.com/news/national/the-trump-administration-is-suspending-microsoft-from-a-green-card-program-alleging-fraud/article_13d75e36-67a2-51c2-9edd-dd6e96fe5916.html",
+       "domain": "union-bulletin.com"
+      },
+      {
+       "title": "Microsoft reacts to US immigration crackdown while Trump honours Nadella",
+       "url": "http://www.sierraleonetimes.com/news/279360621/microsoft-reacts-to-us-immigration-crackdown-while-trump-honours-nadella",
+       "domain": "sierraleonetimes.com"
+      },
+      {
+       "title": "Microsoft responds to green card program suspension, Trump administration alleging fraud",
+       "url": "https://wsbt.com/news/nation-world/microsoft-redmond-washington-defends-hiring-as-trump-jd-vance-administration-probes-visa-practices-perm-h-1b-visa-program-perm-immigration-tech-bill-gates-indentured-servants",
+       "domain": "wsbt.com"
+      },
+      {
+       "title": "'These were not to hire new people': Microsoft says amid Trump administration's visa fraud allegations",
+       "url": "https://www.hindustantimes.com/world-news/these-were-not-to-hire-new-people-microsoft-says-amid-trump-administrations-visa-fraud-allegations-101791491099933.html",
+       "domain": "hindustantimes.com"
+      },
+      {
+       "title": "US freezes Microsoft, Adobe visas over alleged fraud",
+       "url": "https://www.bendigoadvertiser.com.au/story/9365366/us-freezes-microsoft-adobe-visas-over-alleged-fraud/",
+       "domain": "bendigoadvertiser.com.au"
+      },
+      {
+       "title": "Trump administration suspends Microsoft from visa program over fraud concerns",
+       "url": "https://homenewshere.com/national/news/article_15839332-6d42-5763-9582-6d6ecdc6f726.html",
+       "domain": "homenewshere.com"
+      },
+      {
+       "title": "Flutterwave CEO joins OpenAI, NVIDIA, Microsoft and AMD-led Advisory Board in Silicon Valley",
+       "url": "https://dailypost.ng/2026/10/08/flutterwave-ceo-joins-openai-nvidia-microsoft-and-amd-led-advisory-board-in-silicon-valley/",
+       "domain": "dailypost.ng"
+      }
+     ]
+    },
+    "huawei": {
+     "heat": -1.7387993257237684,
+     "why": null,
+     "headlines": []
+    },
+    "amazon": {
+     "heat": 1.4072061110577045,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Acetaminophen sold on Amazon recalled over complaints",
+       "url": "https://www.ktvu.com/news/acetaminophen-amazon-recalled-complaints",
+       "domain": "ktvu.com"
+      },
+      {
+       "title": "Can AWS Transform Make NetApp (NTAP) the Default Storage Landing Zone in the Cloud?",
+       "url": "https://www.insidermonkey.com/news/can-aws-transform-make-netapp-ntap-the-default-storage-landing-zone-in-the-cloud-1846786/",
+       "domain": "insidermonkey.com"
+      },
+      {
+       "title": "Amazon cuts retail jobs amid one of its biggest shopping days",
+       "url": "https://www.ktvu.com/news/amazon-cuts-retail-jobs-shopping-day",
+       "domain": "ktvu.com"
+      },
+      {
+       "title": "Jury Says Amazon Storefronts Infringed Golf Cart Patents",
+       "url": "https://www.law360.com:443/articles/2535160",
+       "domain": "law360.com"
+      },
+      {
+       "title": "PYMNTS | Walmart Defends Its Pricing as Amazon Kicks Off Holiday Sales",
+       "url": "https://www.pymnts.com/news/retail/2026/walmart-defends-its-pricing-as-amazon-kicks-off-holiday-sales/",
+       "domain": "pymnts.com"
+      },
+      {
+       "title": "AWS Marketplace Lowers Partner Fees In 'Game-Changer' Channel Move",
+       "url": "https://www.crn.com/news/cloud/2026/aws-marketplace-lowers-partner-fees-in-game-changer-channel-move",
+       "domain": "crn.com"
+      },
+      {
+       "title": "Amazon's delivery box: a symbol of instant gratification and convenience",
+       "url": "https://www.thepeterboroughexaminer.com/business/amazon-s-delivery-box-a-symbol-of-instant-gratification-and-convenience/article_b328c324-9d52-5d62-b941-6c0e8cb4248a.html",
+       "domain": "thepeterboroughexaminer.com"
+      },
+      {
+       "title": "The Galaxy S26 Ultra is now even cheaper than it was during Amazon's Prime Big Deal Days",
+       "url": "https://www.androidpolice.com/the-galaxy-s26-ultra-is-now-even-cheaper/",
+       "domain": "androidpolice.com"
+      }
+     ]
+    },
+    "anthropic": {
+     "heat": -1.145174932802525,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Anthropic Bans 'Sustained And Needless Abusive Or Cruel Behavior' Toward Its AI Models",
+       "url": "https://www.engadget.com/2281765/anthropic-bans-sustained-and-needless-abusive-or-cruel-behavior-toward-its-ai-models/",
+       "domain": "engadget.com"
+      },
+      {
+       "title": "How to protect your 401(k) from an AI stock market crash... as Wall Street analyst brands Anthropic's $2 trillion debut 'the most ridiculous IPO of 2026'",
+       "url": "https://www.dailymail.com/yourmoney/article-16193427/anthropic-wall-street-ipo-ai-boom-protect-401k.html",
+       "domain": "dailymail.com"
+      },
+      {
+       "title": "Appetite for OpenAI, Anthropic IPOs will be strong despite some negative headlines: Ives",
+       "url": "https://www.aol.com/articles/appetite-openai-anthropic-ipos-strong-204229000.html",
+       "domain": "aol.com"
+      },
+      {
+       "title": "Anthropic Bans Being Cruel to Claude",
+       "url": "https://www.newser.com/story/397823/anthropic-bans-being-cruel-to-claude.html",
+       "domain": "newser.com"
+      },
+      {
+       "title": "Anthropic Moves Us One Step Closer to Making 'Clanker' a Slur",
+       "url": "https://gizmodo.com/anthropic-moves-us-one-step-closer-to-making-clanker-a-slur-2000823772",
+       "domain": "gizmodo.com"
+      },
+      {
+       "title": "Anthropic's usage policy will reportedly prohibit abusive behavior toward Claude starting November 12, 2026 · Digg",
+       "url": "https://digg.com/ai/ptqj55v9",
+       "domain": "digg.com"
+      },
+      {
+       "title": "Anthropic changes usage policy to ban model abuse and election interference",
+       "url": "https://techcrunch.com/2026/10/08/anthropic-changes-usage-policy-to-ban-model-abuse-and-election-interference/",
+       "domain": "techcrunch.com"
+      },
+      {
+       "title": "Anthropic Launches Claude Dashboards and Motion AI Tools",
+       "url": "http://www.econotimes.com/Anthropic-Launches-Claude-Dashboards-and-Motion-AI-Tools-1754401",
+       "domain": "econotimes.com"
+      }
+     ]
+    },
+    "google": {
+     "heat": 1.0029361281727713,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Andy Burnham hits back as he's torn apart over 'use Google Maps' petrol crisis post",
+       "url": "https://www.aol.co.uk/articles/andy-burnham-hits-back-hes-214900000.html",
+       "domain": "aol.co.uk"
+      },
+      {
+       "title": "Constellation Energy (CEG): Is the Google Nuclear Deal a Game Changer?",
+       "url": "https://www.insidermonkey.com/news/constellation-energy-ceg-is-the-google-nuclear-deal-a-game-changer-1850484/",
+       "domain": "insidermonkey.com"
+      },
+      {
+       "title": "Google Is Doing Away With Safety Signal On Pixel Watch",
+       "url": "https://www.engadget.com/2281591/google-is-doing-away-with-safety-signal-on-pixel-watch/",
+       "domain": "engadget.com"
+      },
+      {
+       "title": "Google unveils universal Gemini agent for enterprise · Digg",
+       "url": "https://digg.com/tech/p5zp946l",
+       "domain": "digg.com"
+      },
+      {
+       "title": "Google Photos' new Moods feature is so good it made me ditch Adobe Lightroom",
+       "url": "https://www.androidpolice.com/google-photos-new-moods-feature-so-good-it-made-me-ditch-adobe-lightroom/",
+       "domain": "androidpolice.com"
+      },
+      {
+       "title": "Google data center cited for 7 DEQ violations in Chesterfield",
+       "url": "https://www.wtvr.com/news/local-news/chesterfield-county/google-data-center-cited-for-7-deq-violations-in-chesterfield",
+       "domain": "wtvr.com"
+      },
+      {
+       "title": "Find Cheapest Petrol Pump Nearby with New Google Maps Feature",
+       "url": "https://en.dailypakistan.com.pk/08-Oct-2026/find-cheapest-petrol-pump-nearby-with-new-google-maps-feature",
+       "domain": "dailypakistan.com.pk"
+      },
+      {
+       "title": "Renaming of Lake Ontario drives app users away from Google Maps",
+       "url": "https://www.bostonherald.com/2026/10/08/lake-america-ontario-renamed-google-maps/",
+       "domain": "bostonherald.com"
+      }
+     ]
+    }
+   }
+  },
+  "tech_personalities": {
+   "digest": null,
+   "entities": {
+    "musk": {
+     "heat": 2.1948434455438814,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | Newsradio 92.7 WBEX",
+       "url": "https://wbex.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump honours six tech giants with National Medals of Science, Technology and Innovation",
+       "url": "http://www.greekherald.com/news/279360658/trump-honours-six-tech-giants-with-national-medals-of-science-technology-and-innovation",
+       "domain": "greekherald.com"
+      },
+      {
+       "title": "Echidna | Garry Linnell: Being wealthy seems like more trouble than it is worth | Central Western Daily",
+       "url": "https://www.centralwesterndaily.com.au/story/9364687/echidna-garry-linnell-being-wealthy-seems-like-more-trouble-than-it-is-worth/",
+       "domain": "centralwesterndaily.com.au"
+      },
+      {
+       "title": "Trump honours Elon Musk with National Medal of Science, calls him",
+       "url": "http://www.greekherald.com/news/279360540/trump-honours-elon-musk-with-national-medal-of-science-calls-him-modern-day-thomas-edison",
+       "domain": "greekherald.com"
+      },
+      {
+       "title": "Trump honours Nadella, Musk, five other tech giants",
+       "url": "https://ianslive.in/trump-honours-nadella-musk-five-other-tech-giants--20261009000603",
+       "domain": "ianslive.in"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others",
+       "url": "https://knst.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Victoria candidate kicked from BC Conservatives after resurfaced social media posts",
+       "url": "https://mapleridgenews.com/2026/10/08/victoria-candidate-kicked-from-bc-conservatives-after-resurfaced-social-media-posts/",
+       "domain": "mapleridgenews.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | WJBO Newsradio 1150 AM & 98.7 FM",
+       "url": "https://wjbo.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      }
+     ]
+    },
+    "huang": {
+     "heat": 2.095088043598187,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | NewsRadio 570 WKBN",
+       "url": "https://570wkbn.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | Newsradio 92.7 WBEX",
+       "url": "https://wbex.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump honours six tech giants with National Medals of Science, Technology and Innovation",
+       "url": "http://www.greekherald.com/news/279360658/trump-honours-six-tech-giants-with-national-medals-of-science-technology-and-innovation",
+       "domain": "greekherald.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | NewsRadio 1170 WWVA",
+       "url": "https://newsradio1170.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | NewsRadio 1450/1370 WKIP",
+       "url": "https://1450wkip.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others",
+       "url": "https://knst.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump To Award Science Medals To Musk, Others | The Patriot KEIB AM 1150",
+       "url": "https://patriotla.iheart.com/content/2026-10-08-trump-to-award-science-medals-to-musk-others/",
+       "domain": "iheart.com"
+      },
+      {
+       "title": "Trump Honors Tech Leaders With Nation's Top Awards in Science and Technology",
+       "url": "https://www.theepochtimes.com/us/trump-honors-tech-leaders-with-nations-top-awards-in-science-and-technology-6101313",
+       "domain": "theepochtimes.com"
+      }
+     ]
+    },
+    "gates": {
+     "heat": -1.5742905688728102,
+     "why": null,
+     "headlines": []
+    },
+    "amodei": {
+     "heat": -0.9945446126194394,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Anthropic Plans to Spend $518 Billion on Cloud and Computing Power",
+       "url": "https://www.fool.com/investing/2026/10/08/anthropic-plans-to-spend-518-billion-on-cloud-and/?source=iedfolrf0000001",
+       "domain": "fool.com"
+      },
+      {
+       "title": "Jensen Huang Has Dismissed AI \"Doomsday Narratives,\" Saying, \"Scaring People Is Unnecessary. It Is Irresponsible.\" Here's Why That Stance Matters for Nvidia's Growth Story.",
+       "url": "https://www.fool.com/investing/2026/10/08/jensen-huang-has-dismissed-ai-doomsday-narratives/?source=iedfolrf0000001",
+       "domain": "fool.com"
+      }
+     ]
+    },
+    "altman": {
+     "heat": -0.7254606531769378,
+     "why": null,
+     "headlines": [
+      {
+       "title": "Meanwhile raises $37.5m from investors",
+       "url": "https://www.royalgazette.com/reinsurance/business/article/20261008/meanwhile-raises-37-5m-from-investors/",
+       "domain": "royalgazette.com"
+      },
+      {
+       "title": "Billionaires Love Cellular Reprogramming for Longevity, It May Work",
+       "url": "https://www.businessinsider.com/billionaires-cellular-reprogramming-longevity-it-may-work-2026-10",
+       "domain": "businessinsider.com"
+      },
+      {
+       "title": "Trump: If You Say 'AI,' You're My 'Enemy'",
+       "url": "https://www.newser.com/story/397815/trump-if-you-say-ai-youre-my-enemy.html",
+       "domain": "newser.com"
+      },
+      {
+       "title": "OpenAI CEO Sam Altman on AI's future: 'the world should accept some bad things happening'",
+       "url": "https://www.tomsguide.com/ai/chatgpt/openai-ceo-sam-altman-on-ais-future-the-world-should-accept-some-bad-things-happening",
+       "domain": "tomsguide.com"
+      },
+      {
+       "title": "Sam Altman-Backed Meanwhile Raises $37.5M as Families Across Asia, Europe and the Middle East Turn to Bitcoin Life Insurance",
+       "url": "https://www.simcoereformer.ca/press-releases/business-wire/sam-altman-backed-meanwhile-raises-37-5m-as-families-across-asia-europe-and-the-middle-east-turn-to-bitcoin-life-insurance/",
+       "domain": "simcoereformer.ca"
+      }
+     ]
+    }
+   }
+  }
+ }
+}

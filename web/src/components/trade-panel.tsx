@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Fig } from "@/components/ui/bits";
 import { EntityImage } from "@/components/entity-image";
 import { PriceChart } from "@/components/price-chart";
+import { WhyMoving } from "@/components/why-moving";
 import { cn, pct, signed, usd } from "@/lib/utils";
 
 type Side = "buy" | "sell";
@@ -105,6 +106,7 @@ function Body({ category, row, state, onClose }: { category: CategoryKey; row: R
         <div className="text-sm font-medium">Price history</div>
         <PriceChart market={market} index={row.chain.index} />
       </section>
+      <WhyMoving category={category} entityKey={row.snap.key} />
 
       <section className="space-y-4 border-b px-6 py-5">
         <div className="flex items-center justify-between">

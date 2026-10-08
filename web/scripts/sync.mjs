@@ -18,4 +18,6 @@ const snap = `${root}/indexer/out/latest.json`;
 if (fs.existsSync(snap)) fs.copyFileSync(snap, path.resolve(here, "../public/snapshot.json"));
 const tgt = path.join(path.dirname(snap), "targets.json");
 if (fs.existsSync(tgt)) fs.copyFileSync(tgt, path.resolve(here, "../public/targets.json")); // fetched by the Chainlink CRE workflow
+const exp = path.join(path.dirname(snap), "explain.json");
+if (fs.existsSync(exp)) fs.copyFileSync(exp, path.resolve(here, "../public/explain.json")); // Kimi notes + headlines (display only)
 console.log(`sync: ABIs, deployment ${chain}${fs.existsSync(dep) ? "" : " (missing)"}, snapshot ${fs.existsSync(snap) ? "ok" : "missing"}`);

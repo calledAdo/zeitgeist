@@ -9,6 +9,7 @@ import { CharacterBand, GapBar } from "@/components/character-band";
 import { TradePanel } from "@/components/trade-panel";
 import { Button } from "@/components/ui/button";
 import { Delta, Fig } from "@/components/ui/bits";
+import { CategoryDigest } from "@/components/why-moving";
 import { EntityImage } from "@/components/entity-image";
 import { LayoutGrid, Rows3 } from "lucide-react";
 import { cn, duration, pct, signed, usd } from "@/lib/utils";
@@ -63,6 +64,7 @@ export function Board({ category }: { category: CategoryKey }) {
           <p className="mt-3 text-lg leading-relaxed text-foreground/60">
             {meta.blurb} Every 8 hours, money moves toward whoever is running hotter than their own normal.
           </p>
+          <CategoryDigest category={category} />
         </div>
         <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] md:mx-0 md:px-0">
         <div className="inline-flex whitespace-nowrap rounded-xl border border-foreground/10 bg-foreground/[0.02] p-1">

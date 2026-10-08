@@ -44,8 +44,10 @@ def company_hit(e: Entity, a: Article) -> bool:
     return any(e.rx(x).search(t) for x in e.title)
 
 
-def count_batch(reg: Registry, articles: tuple[Article, ...], max_offset: int) -> tuple[int, dict[tuple[str, str], int], dict[tuple[str, str], int]]:
-    """Returns (corpus unique titles, {(cat, key): unique titles}, {(cat, key): distinct domains})."""
+def count_batch(reg: Registry, articles: tuple[Article, ...], max_offset: int, samples: dict | None = None,
+                per_entity: int = 4) -> tuple[int, dict[tuple[str, str], int], dict[tuple[str, str], int]]:
+    """Returns (corpus unique titles, {(cat, key): unique titles}, {(cat, key): distinct domains}).
+    If `samples` is given, fills it with up to `per_entity` (headline, url, domain) per entity, display only."""
     corpus: set[str] = set()
     titles: dict[tuple[str, str], set[str]] = defaultdict(set)
     domains: dict[tuple[str, str], set[str]] = defaultdict(set)
@@ -58,6 +60,8 @@ def count_batch(reg: Registry, articles: tuple[Article, ...], max_offset: int) -
             hit = person_hit(e, a, e.offset_max) if e.kind == "person" else company_hit(e, a)
             if hit:
                 k = (e.category, e.key)
+                if samples is not None and a.title not in titles[k] and a.raw_title and len(samples.setdefault(k, [])) < per_entity:
+                    samples[k].append((a.raw_title, a.url, a.domain))
                 titles[k].add(a.title)
                 domains[k].add(a.domain)
     return len(corpus), {k: len(v) for k, v in titles.items()}, {k: len(v) for k, v in domains.items()}

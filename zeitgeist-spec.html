@@ -1,0 +1,453 @@
+<title>Zeitgeist Design Spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: technical spec. Sticky contents rail on wide screens, one reading column, formulas in mono blocks, one interactive heatmap on real data. */
+:root{
+  --bg:#f4f4f8; --surface:#ffffff; --ink:#17161f; --muted:#5d5a70; --rule:#dddbe8;
+  --accent:#6a52e8; --accent-soft:#ece8fd; --heat:#d2600a; --heat-soft:#fbeedd;
+  --good:#1f7a4d; --good-soft:#e2f3ea; --bad:#b4233a; --bad-soft:#fbe5e9;
+  --f-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121119; --surface:#1b1a24; --ink:#ebe9f5; --muted:#a29fb8; --rule:#2e2c3c;
+  --accent:#a593ff; --accent-soft:#272240; --heat:#f39a45; --heat-soft:#33240f;
+  --good:#5cc994; --good-soft:#15291f; --bad:#f2788c; --bad-soft:#3a1820; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#121119; --surface:#1b1a24; --ink:#ebe9f5; --muted:#a29fb8; --rule:#2e2c3c;
+  --accent:#a593ff; --accent-soft:#272240; --heat:#f39a45; --heat-soft:#33240f;
+  --good:#5cc994; --good-soft:#15291f; --bad:#f2788c; --bad-soft:#3a1820; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.62;margin:0}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:grid;grid-template-columns:210px minmax(0,1fr);gap:52px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13.5px}
+nav.toc .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+nav.toc a{color:var(--muted);text-decoration:none}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent)}
+main{min-width:0;max-width:80ch}
+header.top{display:grid;gap:12px;margin-bottom:28px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.15;margin:0}
+h1{font-size:clamp(34px,5vw,50px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:28px;font-weight:700;margin-top:64px;margin-bottom:14px;letter-spacing:-.01em;scroll-margin-top:20px}
+h3{font-size:19px;font-weight:700;margin-top:32px;margin-bottom:8px}
+p{margin:0 0 14px}
+.lede{font-size:18.5px;color:var(--muted);margin:0}
+.meta{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+ul,ol{padding-left:22px;margin:0 0 14px}
+li{margin-bottom:6px}
+strong{font-weight:600}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+.formula{font-family:var(--f-mono);font-size:13.5px;line-height:1.75;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 18px;margin:14px 0 18px;overflow-x:auto;white-space:pre}
+.verdict{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;display:grid;gap:10px}
+.verdict h3{margin:0}
+.verdict ol,.verdict p{margin:0}
+.callout{border-left:3px solid var(--heat);background:var(--heat-soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:16px 0}
+.callout p:last-child,.callout ul:last-child{margin:0}
+.tbl{overflow-x:auto;margin:14px 0 20px;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:600px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;font-family:var(--f-mono);font-size:13px;white-space:nowrap}
+td.win{background:var(--good-soft)}
+td.lose{background:var(--bad-soft)}
+tr.dim td{color:var(--muted)}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:99px;white-space:nowrap}
+.p-bad{background:var(--bad-soft);color:var(--bad)}
+.p-good{background:var(--good-soft);color:var(--good)}
+.p-mut{background:var(--bg);color:var(--muted);border:1px solid var(--rule)}
+/* heatmap */
+.lab{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;margin:18px 0;display:grid;gap:14px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:8px;overflow:hidden;width:max-content;max-width:100%}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{display:block;padding:6px 12px;cursor:pointer;color:var(--muted);font-size:13px}
+.seg input:checked+label{background:var(--accent);color:var(--bg)}
+.seg input:focus-visible+label{outline:2px solid var(--accent);outline-offset:-2px}
+.sum{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:14px}
+.sum b{font-family:var(--f-mono);font-weight:500}
+.hmwrap{overflow-x:auto}
+.hm{display:grid;grid-template-columns:84px repeat(21,minmax(20px,1fr));gap:2px;min-width:560px;font-size:12px}
+.hm .rl{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);display:flex;align-items:center;white-space:nowrap}
+.hm button.dh{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:10px;color:var(--muted);text-align:center;padding:2px 0;border-radius:3px}
+.hm button.dh.sel{background:var(--accent);color:var(--bg)}
+.hm button.dh:focus-visible{outline:2px solid var(--accent)}
+.hm .c{height:20px;border-radius:3px;cursor:pointer;position:relative}
+.hm .c.w{box-shadow:inset 0 0 0 2px var(--ink)}
+.hm .c.s{outline:1px solid var(--accent);outline-offset:0}
+.legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:5px}
+.race{display:grid;gap:6px}
+.race .r{display:grid;grid-template-columns:90px minmax(0,1fr) 64px 64px;gap:10px;align-items:center;font-size:13.5px}
+.race .r .bar{height:10px;border-radius:3px;background:var(--heat)}
+.race .r .n{font-family:var(--f-mono);font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums}
+.race .hd{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mermaid{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;overflow-x:auto;margin:16px 0}
+.days{display:grid;border:1px solid var(--rule);border-radius:10px;background:var(--surface);overflow:hidden;margin:14px 0}
+.day{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:12px 16px;border-bottom:1px solid var(--rule)}
+.day:last-child{border-bottom:0}
+.day .d{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);padding-top:2px}
+.day p{margin:0}
+.src{font-size:14px}
+.src li{margin-bottom:4px}
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:24px 64px;padding-inline:16px}
+  nav.toc{position:static;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;background:var(--surface)}
+  nav.toc ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .day{grid-template-columns:minmax(0,1fr);gap:4px}
+  .race .r{grid-template-columns:76px minmax(0,1fr) 52px 52px}
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <div class="lbl">Contents</div>
+  <ol>
+    <li><a href="#verdict">Verdict</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#character">Character, defined</a></li>
+    <li><a href="#window">Rolling window → EWMA</a></li>
+    <li><a href="#funding">Funding, tested</a></li>
+    <li><a href="#ve">Votes &amp; emissions</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#lab">Heatmap</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#manipulation">Fairness vs manipulation</a></li>
+    <li><a href="#carried">Changes from v1</a></li>
+    <li><a href="#plan">12-day plan</a></li>
+    <li><a href="#risks">Open decisions</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top">
+  <div class="eyebrow">Monad Metropolis · Social, Attention &amp; Culture track</div>
+  <h1>Zeitgeist: one mechanism, step by step</h1>
+  <p class="lede">You buy shares in an entity, such as Xi Jinping in the World Leaders category. Every 8 hours, funding moves money between the pools in that category toward where attention is. Attention is measured against each entity's own normal level, so Trump has to beat his own baseline to gain like everyone else. Once a week, veZEIT holders vote on which categories receive emissions.</p>
+  <div class="meta">Spec v4 · 1 Oct 2026 · Your SPEC v1 skeleton (curves, 8h funding, weekly votes) with character-relative targets and three fixes · Tested on 35 days of GDELT data for 15 world leaders</div>
+</header>
+
+<section id="verdict">
+<div class="verdict">
+  <h3>The verdict</h3>
+  <p><strong>Your mental model is the right core,</strong> and it is close to your SPEC v1: buy entity shares, funding every 8 hours, rolling attention, weekly votes. Running it on 35 days of real data showed it works with character-relative targets, after four changes:</p>
+  <ol>
+    <li><strong>Funding targets character, not raw share.</strong> Each pool is pulled toward <code>e^(0.35·heat) / Σ</code>. At rest, every leader gets an equal slice, Trump included. A pool grows only when its entity runs hotter than its own normal.</li>
+    <li><strong>Replace the 24h box with a smooth decay (EWMA, 12h half-life).</strong> Your idea of dropping the T−25h batch has a cliff. Netanyahu's attention fell <strong>42% in one step</strong>, exactly 24 hours after his busy batch, with no news. Anyone can see that coming and sell first. An EWMA fades old news a little every 15 minutes instead.</li>
+    <li><strong>The ±8% cap must keep funding zero-sum.</strong> As SPEC v1 is written, when the cap binds unevenly, money leaks out of the category. In the λ = 1 test, every pool lost money. Fix: after capping, scale the larger side down so transfers still sum to zero.</li>
+    <li><strong>Vote on categories, not entities.</strong> Your SPEC_V2 showed money chasing a per-entity gauge loses 72% a week to funding. Per-category votes, with emissions paid to every holder in the category per dollar held, don't steer money into any single pool, so there's nothing to drain.</li>
+  </ol>
+  <p>Result with these settings (EWMA 12h, λ 0.35, k 0.15, ±8% cap): about <strong>6% daily price moves</strong>, the cap binding only 9% of the time, 7 of 15 leaders up over 3 weeks (−41% to +138%), and total reserves conserved to the dollar.</p>
+</div>
+</section>
+
+<section id="how">
+<h2>How it works, step by step</h2>
+<h3>Two things you can do, with two different tokens</h3>
+<div class="tbl"><table>
+<thead><tr><th>Action</th><th>Token</th><th>What you get</th><th>Does its price follow attention?</th></tr></thead>
+<tbody>
+<tr><td><strong>Buy an entity</strong> (e.g. Xi in World Leaders)</td><td>USDC → entity shares on a bonding curve</td><td>Price exposure to that entity's heat. Funding moves your reserve every 8h</td><td class="win">Yes. This is the attention bet</td></tr>
+<tr><td><strong>Lock and vote</strong> on a category</td><td>ZEIT → veZEIT</td><td>That category's trading fees and bribes, and you direct its share of next week's emissions</td><td>No. This is the governance and yield side</td></tr>
+</tbody></table></div>
+
+<h3>The clocks</h3>
+<div class="formula">Every 15 min  a new GDELT file lands. The indexer adds each entity's new unique stories:
+                A_i ← 0.9857 · A_i + 0.0143 · new_stories_i       (12h half-life: old news fades smoothly)
+                C   ← 0.9857 · C   + 0.0143 · all_new_stories
+                I_i = A_i / C                                      entity's share of all news right now
+
+Every hour    heat     h_i = clamp( (ln I_i − μ_i) / σ_i , −3, +3 )   compared to its own 28-day character
+              target   w_i = e^(0.35·h_i) / Σ_j e^(0.35·h_j)           all equal (1/N) when nobody is unusual
+              gap      target vs actual pool share, shown publicly ("Xi is 6.9 pts underweight")
+
+Every 8 hours funding (on-chain)
+              w̄_i  = average of the last 8 hourly targets               TWAP, so no one wins a race to the oracle
+              ΔR_i = 0.15 · (w̄_i · ΣR − R_i)                            close 15% of the gap
+              cap  |ΔR_i| ≤ 8% of R_i, then scale the larger side so ΣΔR = 0
+              price_i moves by ΔR_i / R_i for every holder              Bancor P = R/(S·CW), no slippage
+
+Weekly        vote flip: veZEIT splits next week's emissions across categories
+              last week's fees and bribes are paid to that category's voters
+
+Any time      buy or sell entity shares on the curve (0.5% fee per side)</div>
+
+<h3>Who gains and who pays</h3>
+<ul>
+  <li><strong>You gain</strong> when your entity runs hotter than its own normal. Its target rises above its pool share, and each 8-hour epoch moves reserve in, up to +8%.</li>
+  <li><strong>You pay</strong> when your entity is quieter than normal, or when the crowd has piled in beyond its target. Funding moves reserve out.</li>
+  <li><strong>Buying early pays.</strong> The gap is public and funding is slow (15% of the gap, capped), so a trader who spots a story before it peaks buys before funding catches up. Those who buy later push the price up the curve as well. Funding guarantees convergence; trading does most of the work (SPEC v1 §5.4).</li>
+  <li><strong>It's zero-sum within a category.</strong> Every dollar of funding one pool receives comes from the others. Profit comes from being right about attention, not from inflation.</li>
+</ul>
+
+<h3>A real story, traced</h3>
+<p>Here is what holders would have seen, replayed on the real data. Epochs are 9 hours apart here because the sample is 3-hourly:</p>
+<div class="tbl"><table>
+<thead><tr><th>Xi Jinping</th><th class="num">Heat</th><th class="num">Target share</th><th class="num">Pool share</th><th class="num">Price</th></tr></thead>
+<tbody>
+<tr><td>10 Sep 18:00</td><td class="num">+1.2</td><td class="num">10.2%</td><td class="num">5.4%</td><td class="num">×1.11</td></tr>
+<tr><td>11 Sep 12:00</td><td class="num">+1.6</td><td class="num">9.8%</td><td class="num">6.3%</td><td class="num">×1.30</td></tr>
+<tr><td>12 Sep 06:00</td><td class="num">+2.2</td><td class="num">11.7%</td><td class="num">7.3%</td><td class="num">×1.51</td></tr>
+<tr><td>13 Sep 00:00</td><td class="num">+3.0</td><td class="num">15.5%</td><td class="num">8.6%</td><td class="num">×1.76</td></tr>
+<tr><td>13 Sep 09:00</td><td class="num">+2.7</td><td class="num">13.7%</td><td class="num">9.2%</td><td class="num">×1.90</td></tr>
+</tbody></table></div>
+<p>The pool climbs about 8% per epoch (the cap) while the target stays ahead of it. That gap, visible to everyone, is the buy-early signal. Netanyahu shows the other side: he drifted to <strong>×0.57</strong> during a quiet stretch (below his normal, so paying funding). Then his 25 Sep story pushed heat to +3 and took him back to <strong>×0.90</strong> in about 2.5 days, a 58% gain for anyone who bought at the bottom.</p>
+</section>
+
+<section id="character">
+<h2>Character, defined</h2>
+<p>Every entity carries a <strong>character card</strong>, computed from its own trailing history and refreshed once a week at the vote flip, so traders always know the handicap.</p>
+<div class="formula">I_i      = EWMA attention share, updated every 15 min (see "How it works")            corpus-denominated (SPEC_V2 §2.2)
+μ_i      = mean of ln(daily I_i) over the trailing 28 days                       normal level
+σ_i      = std of ln(daily I_i) over the trailing 28 days, floor 0.15             temperament
+heat     h_i = clamp( (ln I_i − μ_i) / σ_i , −3 , +3 )
+"+1 heat needs"  = e^σ_i × normal coverage                                        shown on the card</div>
+<p>A heat of +1 means "one normal swing above usual, for this entity." Because both μ and σ are the entity's own, raw size cancels out:</p>
+<div class="tbl"><table>
+<thead><tr><th>Character card</th><th class="num">Normal stories/day</th><th class="num">Temperament σ</th><th class="num">+1 heat needs</th><th class="num">Roster share</th></tr></thead>
+<tbody>
+<tr><td>Trump</td><td class="num">~5,000</td><td class="num">0.15 (floor)</td><td class="num">×1.16</td><td class="num">57.3%</td></tr>
+<tr><td>Xi Jinping</td><td class="num">~700</td><td class="num">0.66</td><td class="num">×1.94</td><td class="num">5.7%</td></tr>
+<tr><td>Modi</td><td class="num">~510</td><td class="num">0.44</td><td class="num">×1.56</td><td class="num">8.5%</td></tr>
+<tr><td>Putin</td><td class="num">~470</td><td class="num">0.61</td><td class="num">×1.83</td><td class="num">6.9%</td></tr>
+<tr><td>Starmer</td><td class="num">~210</td><td class="num">0.54</td><td class="num">×1.72</td><td class="num">2.2%</td></tr>
+<tr><td>Milei</td><td class="num">~55</td><td class="num">0.78</td><td class="num">×2.19</td><td class="num">0.7%</td></tr>
+</tbody></table></div>
+<p>This answers your question directly. A +100-story day for Trump is +2% for him, about <strong>+0.13 heat</strong>, which is noise. The same +100 stories for Starmer is +47%, about <strong>+0.7 heat</strong>. Trump is not handicapped out of the game: he is the steadiest leader, so a real Trump story (+16%) is a full point of heat. He won 3 of 21 days on exactly that.</p>
+<p>Corpus denomination keeps heat honest at every hour. <code>I</code> is a share of all news, so weekends and quiet nights, when everyone's coverage drops together, don't register as anyone cooling off.</p>
+</section>
+
+<section id="window">
+<h2>Rolling window → EWMA</h2>
+<p>Your instinct is right: attention has to decay when the news stops. The 24h box (add the newest batch, drop the T−25h batch) does decay, but it decays on a schedule, not when the news does. A spike leaves the window all at once, exactly 24 hours later. SPEC v1 §2.4 predicted this "echo". Here it is in the real data:</p>
+<div class="tbl"><table>
+<thead><tr><th>Moment</th><th class="num">New stories that 3h step</th><th class="num">24h box</th><th class="num">12h EWMA</th></tr></thead>
+<tbody>
+<tr><td>Netanyahu, 26 Sep 18:00</td><td class="num">1</td><td class="num">66.1</td><td class="num">69.6</td></tr>
+<tr><td>Netanyahu, 27 Sep 00:00</td><td class="num">0</td><td class="num lose">38.1 (−42% in one step)</td><td class="num">56.0 (−20%)</td></tr>
+<tr><td>Xi, 13 Sep 12:00</td><td class="num">11</td><td class="num">219.5</td><td class="num">170.9</td></tr>
+<tr><td>Xi, 13 Sep 18:00</td><td class="num">9</td><td class="num lose">151.0 (−31%)</td><td class="num">158.4 (−7%)</td></tr>
+</tbody></table></div>
+<p>Both cliffs happen when the busy batch from the day before drops out, not because of anything new. Because the drop time is known in advance, holders can sell just before it. The EWMA has no back edge: each 15-minute update keeps 98.57% of the old attention, so a story fades by half every 12 hours. It's the same decay you wanted, without the cliff. This is also what your SPEC_V2 §2.3 adopted.</p>
+</section>
+
+<section id="funding">
+<h2>Funding, tested on real data</h2>
+<p>15 world leaders, $1M category, pools starting at their fair target on 10 Sep, then 21 days of funding with no trades. Funding every 9h (the data is 3-hourly), k = 0.15, ±8% cap, kept zero-sum:</p>
+<div class="tbl"><table>
+<thead><tr><th>Window</th><th>Target</th><th class="num">Daily price move</th><th class="num">Cap binds</th><th class="num">21-day result: min / median / max</th><th class="num">Up</th></tr></thead>
+<tbody>
+<tr><td>EWMA 12h</td><td>Raw share (v1)</td><td class="num">7.3%</td><td class="num">20%</td><td class="num">−55% / −17% / +599%</td><td class="num">7/15</td></tr>
+<tr><td><strong>EWMA 12h</strong></td><td><strong>Character, λ 0.35</strong></td><td class="num win">6.2%</td><td class="num win">9%</td><td class="num">−41% / −5% / +138%</td><td class="num">7/15</td></tr>
+<tr><td>EWMA 12h</td><td>Character, λ 0.5</td><td class="num">7.0%</td><td class="num">21%</td><td class="num">−47% / −9% / +201%</td><td class="num">7/15</td></tr>
+<tr><td>EWMA 12h</td><td>Character, λ 1.0</td><td class="num">6.9%</td><td class="num lose">60%</td><td class="num">−64% / −3% / +717%</td><td class="num">7/15</td></tr>
+<tr><td>24h box</td><td>Character, λ 0.35</td><td class="num">6.4%</td><td class="num">9%</td><td class="num">−36% / +4% / +144%</td><td class="num">8/15</td></tr>
+<tr><td>EWMA 3 days</td><td>Character, λ 0.35</td><td class="num">5.6%</td><td class="num">9%</td><td class="num">−63% / −15% / +244%</td><td class="num">7/15</td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>λ is the sensitivity dial.</strong> At 0.35, an entity at heat +3 targets 2.9× its equal slice, and at −3 it targets 0.35×. At λ = 1 the targets swing 20×, and the cap binds 60% of the time. The price then just ramps at +8% per epoch whatever the news does, and stops following attention.</li>
+  <li><strong>Zero-sum cap fix:</strong> without it, the λ = 1 run lost money in all 15 pools, because capped winners received less than uncapped losers paid. With it, ΣR stayed exactly $1,000,000 in every run.</li>
+  <li><strong>This corrects v3.</strong> v3 said continuous pools on daily heat swing 30–88% a day. That test had no cap and λ = 1. With your ±8% cap and λ 0.35, the continuous design is holdable, so Heat Races become an optional side game rather than the core.</li>
+</ul>
+</section>
+
+<section id="ve">
+<h2>Votes and emissions</h2>
+<p>Your model had people staking veTokens "on an entity or a category the week before, then emissions are allocated." Use categories:</p>
+<div class="formula">Week W−1   veZEIT holders vote: e.g. 40% World Leaders, 35% AI Labs, 25% Football
+Week W     emissions E_W (≤ trailing fees) are split by those votes:  E_c = E_W · votes_c / Σ votes
+           inside category c, every holder earns per dollar held per second:
+               reward = E_c · (your reserve value × seconds) / (category ΣR × seconds)
+           voters of c earn c's trading fees (70% of the 0.5% fee) plus bribes posted for c
+Fee split  70% category voters · 20% season prizes · 10% treasury and oracle security</div>
+<ul>
+  <li><strong>Why not per entity:</strong> if votes send emissions to Xi specifically, people buy Xi beyond his attention target, and funding drains that excess to the rest of the category every 8 hours. Your SPEC_V2 measured a 72% loss in a week. Votes would be fighting funding, and funding is 21× faster.</li>
+  <li><strong>Why categories work:</strong> emissions are paid per dollar held anywhere in the category, so they don't favor any entity, don't push any pool off target, and don't trigger funding. They make the category as a whole more attractive to hold, which deepens liquidity for every entity in it.</li>
+  <li><strong>Who bribes:</strong> communities that want their category deep and busy, such as football fan DAOs or AI communities. "Curation paid for by the people who benefit," at the category level.</li>
+  <li><strong>Optional side game:</strong> daily Heat Races (v3) can run on the same oracle in any category. They're no longer needed for the core.</li>
+</ul>
+</section>
+
+<section id="evidence">
+<h2>Evidence</h2>
+<h3>World leaders, 35 days of GDELT (27 Aug – 30 Sep 2026)</h3>
+<p>15 leaders, 8 GKG files sampled per day (280 files), unique titles, names matched on <code>V2Persons ∪ AllNames</code>. The first 14 days build character, and the last 21 are scored. Each rule picks one "winner" per day:</p>
+<div class="tbl"><table>
+<thead><tr><th>Scoring rule</th><th class="num">Distinct winners</th><th class="num">Trump wins</th><th class="num">Fairness (entropy / max)</th><th>Who dominates</th></tr></thead>
+<tbody>
+<tr><td>Raw share of category</td><td class="num lose">1 / 15</td><td class="num lose">21 / 21</td><td class="num lose">0%</td><td>Trump, every day</td></tr>
+<tr><td>Raw growth vs own baseline</td><td class="num">9 / 15</td><td class="num lose">0 / 21</td><td class="num">79%</td><td>Small, noisy leaders (Erdogan, Lula)</td></tr>
+<tr><td><strong>Character (growth ÷ own σ)</strong></td><td class="num win">11 / 15</td><td class="num win">3 / 21</td><td class="num win">85%</td><td>Nobody. Trump, Netanyahu and Starmer each won 3</td></tr>
+</tbody></table></div>
+<h3>Your 84-day, 20-subject dataset (<code>weekly_cov/daily.jsonl</code>)</h3>
+<p>Same test on mixed subjects (cities, brands, artists, politicians): raw share gave 1 winner (New York, 56 of 56 days). Character scoring gave 18 of 20 winners at 94% of maximum fairness. Two subjects averaging under 3 stories a day (Drake, Milan) still won too often, because small counts are noisy. A <strong>minimum-volume gate</strong> fixed it: no wins by tiny subjects, and 15 of 16 eligible subjects still won at least once.</p>
+</section>
+
+<section id="lab">
+<h2>Heatmap: replay the 21 days</h2>
+<p>Each row is a leader and each column is a day. Darker orange means a higher score under the selected rule. The outlined cell is that day's winner. Click a day to see how that day would have paid as a daily Heat Race, the optional side game.</p>
+<div class="lab">
+  <div class="seg" role="radiogroup" aria-label="Scoring rule">
+    <input type="radio" name="rule" id="rShare" value="share"><label for="rShare">Raw share</label>
+    <input type="radio" name="rule" id="rGrowth" value="growth"><label for="rGrowth">Raw growth</label>
+    <input type="radio" name="rule" id="rChar" value="character" checked><label for="rChar">Character</label>
+  </div>
+  <div class="sum" id="hmSum"></div>
+  <div class="hmwrap"><div class="hm" id="hm"></div></div>
+  <div class="legend"><span><i style="background:color-mix(in oklab,var(--heat) 85%,var(--surface))"></i>hot</span><span><i style="background:color-mix(in oklab,var(--accent) 55%,var(--surface))"></i>below normal</span><span><i style="background:var(--surface);box-shadow:inset 0 0 0 2px var(--ink)"></i>day's winner</span></div>
+  <div class="race" id="race" aria-live="polite"></div>
+  <p class="meta" style="margin:0">Sampled counts (8 of 96 files per day). Lula and Kim fall below the volume gate. Erdogan, Lula and Kim are likely undercounted by name matching. Payout multiple assumes the crowd staked evenly.</p>
+</div>
+</section>
+
+
+
+
+
+<section id="categories">
+<h2>Categories: whole populations, mechanical membership</h2>
+<p>Because character scoring cancels size, a category can be a true population rather than a hand-picked set of similar-sized rivals.</p>
+<div class="formula">World Leaders  =  heads of state or government of G20 members
+                + leaders of states in an active major conflict
+                + any head of government above the volume gate
+gate            normal coverage ≥ ~50 unique stories/day (28-day), ≥ 10 domains, ≥ 3 countries
+                person precision ≥ 75% (IDEATION §18.4); otherwise score on Voice Share (§19.3)
+changes         membership changes take effect at the next weekly boundary; Entity Shares phase in over 7 days</div>
+<ul>
+  <li><strong>Roster changes don't reprice anyone's heat.</strong> Heat is corpus-denominated and per entity, so adding Lula doesn't move Trump's score. Only the race field changes. That removes most of SPEC_V2 §4's denominator problem for races. Entity Shares still renormalize, hence the phase-in.</li>
+  <li><strong>Figureheads.</strong> Your §18 found Putin's mentions are often really about Russia, and Modi's about India. Character scoring doesn't fix precision. For fused figureheads, the heat input should be Voice Share (quote-proximate articles), which your §19 measured at 67–91% precision.</li>
+  <li>Same pattern elsewhere: Tech CEOs, AI labs, football players, pop artists, each with a rule-based population and the same gate.</li>
+</ul>
+</section>
+
+<section id="manipulation">
+<h2>Fairness vs manipulation: the same knob</h2>
+<p>Character scoring makes a small, quiet entity as competitive as Trump. It also makes it cheaper to fake. The cost of one point of heat in extra stories per day:</p>
+<div class="tbl"><table>
+<thead><tr><th>Leader</th><th class="num">Extra stories/day for +1 heat</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>Trump</td><td class="num">~812</td><td><span class="pill p-good">expensive</span></td></tr>
+<tr><td>Xi · Putin · Netanyahu</td><td class="num">~660 · 390 · 320</td><td><span class="pill p-good">expensive</span></td></tr>
+<tr><td>Modi · Zelensky · Carney</td><td class="num">~280 · 280 · 270</td><td><span class="pill p-good">ok</span></td></tr>
+<tr><td>Starmer · Macron · Merz</td><td class="num">~150 · 150 · 110</td><td><span class="pill p-mut">watch</span></td></tr>
+<tr><td>Erdogan · Meloni · Milei</td><td class="num">~100 · 75 · 65</td><td><span class="pill p-mut">watch</span></td></tr>
+<tr class="dim"><td>Lula · Kim</td><td class="num">~21 · 16</td><td><span class="pill p-bad">below gate</span></td></tr>
+</tbody></table></div>
+<ul>
+  <li><strong>Volume gate:</strong> keeps entities that are cheap to fake out of the race.</li>
+  <li><strong>Stake caps per entity scale with manipulation cost:</strong> SPEC_V2 §7.2's open-interest cap, applied per race. A $5k cap on Milei and a $100k cap on Trump puts the payoff from faking below its cost.</li>
+  <li><strong>From SPEC_V2:</strong> title dedup, 1/√n domain diffusion weighting, PR-wire exclusion, and the heat clamp at ±3.</li>
+  <li><strong>Diffusion multiplier (SPEC_V2 §3.1):</strong> a spike confined to one country earns less heat.</li>
+</ul>
+</section>
+
+<section id="carried">
+<h2>Changes from your SPEC v1</h2>
+<div class="tbl"><table>
+<thead><tr><th>SPEC v1</th><th>v4</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Oracle share = raw attention share</td><td>Character target <code>e^(0.35h)/Σ</code></td><td>Raw share: Trump wins 21 of 21 days. Character: 3 of 21</td></tr>
+<tr><td>24h box, recomputed every 15 min</td><td>EWMA, 12h half-life</td><td>Box cliffs: −42% and −31% in one step, at predictable times</td></tr>
+<tr><td>±8% cap per epoch</td><td>±8% cap, then rescale to zero-sum</td><td>Uneven caps leaked reserve. At λ = 1, all 15 pools lost</td></tr>
+<tr><td>k = 0.10, instantaneous read</td><td>k = 0.15 on an 8h TWAP</td><td>SPEC_V2 §3.2 and §7: faster convergence, no latency race</td></tr>
+<tr><td>Per-subject gauges, emissions by token-seconds</td><td>Per-category gauges, emissions per dollar held across the category</td><td>Per-entity gauge capital loses 72% a week to funding (SPEC_V2 §5.1)</td></tr>
+<tr><td>4% fee</td><td>0.5% per side</td><td>SPEC_V2 §5.3: a 4% fee locks in an 8% tracking error</td></tr>
+<tr><td>R_fair activation gate, uniform-price launch auction</td><td>Kept, with R_fair = ΣR / N at rest</td><td>Still stops "list, buy the bottom, get pumped"</td></tr>
+<tr><td>Bancor curve, CW 0.5, reserve-share definition</td><td>Kept</td><td>Funding moves price by exactly ΔR/R for every holder</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="plan">
+<h2>12-day plan (1 → 13 Oct)</h2>
+<div class="days">
+  <div class="day"><div class="d">Days 1–2</div><p>Indexer on all 96 GKG files per day: unique stories, EWMA attention, 28-day character cards, hourly heat and targets, 8h TWAP. Backfill. Fix name matching for Erdogan, Lula and Kim.</p></div>
+  <div class="day"><div class="d">Days 3–5</div><p>Contracts: <code>CategoryMarket</code> (Bancor curves per entity, 8h funding with the zero-sum cap, R_fair gate), <code>AttentionOracle</code> (TWAP targets plus <code>inputsHash</code>), veZEIT, <code>CategoryVoter</code>, fee-capped <code>Minter</code>, <code>EmissionDistributor</code> (per-category, per dollar-second), fee split. Fuzz three invariants: ΣΔR = 0, R ≥ 0, round trip = no profit.</p></div>
+  <div class="day"><div class="d">Days 6–7</div><p>Monad testnet. Live 8h funding, plus a fast demo category replaying the 35-day dataset with 10-minute epochs so judges can watch a full story cycle.</p></div>
+  <div class="day"><div class="d">Days 8–10</div><p>Frontend: character cards, a live gap meter ("Xi 6.9 pts underweight, next funding in 2h 14m"), buy and sell, category voting and bribes, leaderboard. Embedded-wallet login. Season 0.</p></div>
+  <div class="day"><div class="d">Day 11</div><p>Stretch: daily Heat Races side game, or a Chainlink CRE oracle.</p></div>
+  <div class="day"><div class="d">Days 12–13</div><p>Demo built around a real Season 0 story. Write-up, then submit.</p></div>
+</div>
+</section>
+
+<section id="risks">
+<h2>Open decisions and caveats</h2>
+<ol>
+  <li><strong>λ:</strong> 0.35 (recommended: follows attention, cap rarely binds) or 0.5 (more action).</li>
+  <li><strong>EWMA half-life:</strong> 12h (recommended) or longer for calmer prices.</li>
+  <li><strong>Categories at launch</strong> and the volume gate per category.</li>
+  <li><strong>Figurehead input:</strong> mentions or Voice Share (IDEATION §19).</li>
+</ol>
+<div class="callout"><p><strong>Caveats.</strong> These simulations have no trading, so they show what funding alone does. Real traders close gaps sooner. 8 of 96 files per day inflates σ for small leaders. Only 35 days of history forced a 14-day character window, and the σ floor sets Trump's handicap. Epochs ran every 9h, not 8h, because the data is 3-hourly. Erdogan, Lula and Kim are probably undercounted.</p></div>
+</section>
+
+<section id="sources">
+<h2>Sources</h2>
+<ul class="src">
+  <li>Your ideation folder: <code>SPEC_V2.md</code> (§2.2, §3.1, §5.1, §5.3, §7), <code>IDEATION_SOCIALFI.md</code> (§12.2–§13, §17–§19), <code>pipeline/weekly_cov/daily.jsonl</code></li>
+  <li><a href="https://econcs.seas.harvard.edu/publications/empirical-study-dynamic-pari-mutuel-markets-evidence-tech-buzz-game">Chen, Pennock et al.: An Empirical Study of Dynamic Pari-mutuel Markets (Tech Buzz Game)</a> · <a href="https://www.researchgate.net/publication/201169030_A_dynamic_pari-mutuel_market_for_hedging_wagering_and_information_aggregation">Pennock: A dynamic pari-mutuel market</a> · <a href="https://link.springer.com/chapter/10.1007/978-3-642-10841-9_64">Gaming Dynamic Parimutuel Markets</a></li>
+  <li><a href="http://data.gdeltproject.org/gdeltv2/lastupdate.txt">GDELT 2.0 GKG files</a> (280 files, 27 Aug – 30 Sep 2026)</li>
+  <li><a href="https://monad.xyz/developers/hackathons/metropolis">Monad Metropolis</a></li>
+  <li>Earlier versions: v1 (heat emissions), v2 (funding toward raw share), v3 (character heat with daily races as the core)</li>
+</ul>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+var D={"d":["08-27","08-28","08-29","08-30","08-31","09-01","09-02","09-03","09-04","09-05","09-06","09-07","09-08","09-09","09-10","09-11","09-12","09-13","09-14","09-15","09-16","09-17","09-18","09-19","09-20","09-21","09-22","09-23","09-24","09-25","09-26","09-27","09-28","09-29","09-30"],"c":[7890,7286,4359,3728,6407,7859,7849,8059,7431,4541,3821,5640,7223,8240,8123,7513,4670,3817,6274,7685,8253,8236,6989,4566,3448,6872,7586,7649,7904,7298,4191,3777,7093,8182,8018],"n":{"Trump":[379,450,273,185,355,449,435,403,411,236,187,258,372,428,496,474,243,247,417,517,499,494,378,340,228,462,467,586,524,507,301,235,421,480,433],"Putin":[30,24,11,11,70,51,96,49,32,46,70,54,57,36,34,101,73,61,69,62,29,61,52,61,31,86,46,57,42,25,23,12,18,19,13],"Xi":[24,23,7,8,41,36,29,23,13,3,3,7,11,15,40,44,91,59,63,31,43,33,20,31,15,65,66,73,140,133,80,54,53,38,18],"Modi":[64,46,36,41,85,68,47,60,52,44,31,37,41,51,61,99,165,132,87,39,47,124,49,46,37,42,29,28,35,40,29,30,46,23,36],"Macron":[2,4,1,1,6,9,17,11,11,2,2,10,20,17,9,9,2,10,11,8,11,16,14,10,13,34,28,36,18,43,4,5,14,12,11],"Starmer":[9,4,3,9,9,33,15,21,15,7,8,13,21,8,11,19,7,8,8,13,12,18,8,12,10,8,14,17,24,7,19,25,40,23,23],"Zelensky":[24,15,19,13,17,15,35,28,23,40,47,19,33,30,42,22,12,33,37,38,17,45,38,8,21,50,55,66,42,22,25,12,12,18,13],"Netanyahu":[17,27,7,14,25,11,18,29,27,14,7,24,37,32,32,14,6,10,20,14,31,39,17,13,13,25,15,37,63,82,19,33,29,36,107],"Erdogan":[2,4,1,11,16,14,3,0,3,2,2,2,3,0,0,2,0,2,3,1,3,1,7,1,6,8,8,21,8,15,3,7,3,6,2],"Lula":[1,0,0,0,0,4,2,1,2,1,2,0,0,3,4,6,3,1,1,0,0,3,1,0,0,4,2,4,1,4,2,0,1,1,0],"Milei":[3,3,1,1,2,1,1,6,34,7,5,1,2,8,5,3,7,5,0,2,1,1,1,2,0,1,3,16,11,7,3,2,6,6,5],"Carney":[77,59,29,28,41,38,51,25,12,11,22,21,59,65,37,34,16,29,33,47,77,86,61,36,17,60,47,66,40,30,25,10,16,30,32],"Merz":[6,8,0,5,4,5,9,4,3,1,34,33,10,14,2,8,1,4,7,6,9,8,9,6,14,26,13,3,5,5,4,6,1,3,5],"Meloni":[3,1,2,4,6,2,2,1,21,2,2,1,4,1,2,1,1,2,4,4,1,7,1,3,5,12,5,11,7,4,2,2,2,5,0],"Kim":[2,4,2,2,1,0,2,1,1,0,0,2,2,1,1,2,2,0,2,1,1,6,3,2,0,0,0,0,1,0,0,0,0,0,2]}};
+var E=Object.keys(D.n),N=D.d.length,W=14,K=E.length;
+function mean(a){return a.reduce(function(s,x){return s+x},0)/a.length}
+function sd(a){var m=mean(a);return Math.sqrt(mean(a.map(function(x){return (x-m)*(x-m)})))}
+var L={};E.forEach(function(e){L[e]=D.n[e].map(function(v,t){return Math.log((v+.5)/D.c[t])})});
+var S={share:{},growth:{},character:{}};
+E.forEach(function(e){S.share[e]=[];S.growth[e]=[];S.character[e]=[]});
+for(var t=W;t<N;t++){
+  var tot=0;E.forEach(function(e){tot+=D.n[e][t]});
+  E.forEach(function(e){
+    var h=L[e].slice(t-W,t),mu=mean(h),s=Math.max(sd(h),.15),g=L[e][t]-mu;
+    S.share[e].push(D.n[e][t]/tot);S.growth[e].push(g);S.character[e].push(Math.max(-3,Math.min(3,g/s)));
+  });
+}
+var M=N-W,days=D.d.slice(W),sel=days.indexOf("09-12");
+var maxShare=0;E.forEach(function(e){S.share[e].forEach(function(v){if(v>maxShare)maxShare=v})});
+function norm(rule,v){return rule==="share"?v/maxShare:rule==="growth"?Math.max(-1,Math.min(1,v/2)):v/3}
+function color(x){return x>=0?"color-mix(in oklab,var(--heat) "+Math.round(x*85)+"%,var(--surface))":"color-mix(in oklab,var(--accent) "+Math.round(-x*55)+"%,var(--surface))"}
+function rule(){return document.querySelector("input[name=rule]:checked").value}
+function winners(r){var w=[];for(var j=0;j<M;j++){var b=E[0];E.forEach(function(e){if(S[r][e][j]>S[r][b][j])b=e});w.push(b)}return w}
+function render(){
+  var r=rule(),w=winners(r),cnt={};w.forEach(function(e){cnt[e]=(cnt[e]||0)+1});
+  var H=0;Object.keys(cnt).forEach(function(e){var p=cnt[e]/M;H-=p*Math.log(p)});
+  document.getElementById("hmSum").innerHTML="<span>Distinct winners <b>"+Object.keys(cnt).length+" / "+K+"</b></span><span>Trump wins <b>"+(cnt.Trump||0)+" / "+M+"</b></span><span>Fairness <b>"+Math.round(H/Math.log(K)*100)+"%</b></span>";
+  var h="<div></div>";
+  days.forEach(function(d,j){h+="<button class='dh"+(j===sel?" sel":"")+"' data-j='"+j+"' aria-label='Show race for "+d+"'>"+(j%3===0||j===sel?d.slice(3):"·")+"</button>"});
+  E.forEach(function(e){
+    h+="<div class='rl'>"+e+"</div>";
+    for(var j=0;j<M;j++){var v=S[r][e][j];
+      var lbl=e+" · "+days[j]+" · "+(r==="share"?(v*100).toFixed(1)+"% share":r==="growth"?(v>=0?"+":"")+v.toFixed(2)+" log growth":"heat "+(v>=0?"+":"")+v.toFixed(1));
+      h+="<div class='c"+(w[j]===e?" w":"")+(j===sel?" s":"")+"' data-j='"+j+"' title='"+lbl+"' style='background:"+color(norm(r,v))+"'></div>";}
+  });
+  var hm=document.getElementById("hm");hm.innerHTML=h;
+  race();
+}
+function race(){
+  var z={},s=0;E.forEach(function(e){z[e]=Math.exp(S.character[e][sel]);s+=z[e]});
+  var rows=E.map(function(e){return {e:e,p:z[e]/s,h:S.character[e][sel]}}).sort(function(a,b){return b.p-a.p}).slice(0,6);
+  var h="<div class='r hd'><span>"+days[sel]+" race</span><span>Pot share (character heat)</span><span style='text-align:right'>Heat</span><span style='text-align:right'>Payout</span></div>";
+  rows.forEach(function(x){h+="<div class='r'><span>"+x.e+"</span><div class='bar' style='width:"+Math.max(1,x.p*100/rows[0].p)+"%'></div><span class='n'>"+(x.h>=0?"+":"")+x.h.toFixed(1)+"</span><span class='n'>"+(x.p*K).toFixed(1)+"×</span></div>"});
+  document.getElementById("race").innerHTML=h;
+}
+document.getElementById("hm").addEventListener("click",function(ev){var j=ev.target.getAttribute("data-j");if(j!==null){sel=+j;render()}});
+Array.prototype.forEach.call(document.querySelectorAll("input[name=rule]"),function(i){i.addEventListener("change",render)});
+render();
+})();
+</script>

@@ -15,7 +15,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import chain, gkg, match, oracle, params, registry
+from . import chain, explain, gkg, match, oracle, params, registry
 from .store import Store
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,8 +30,9 @@ def _process(reg, ts):
     except RuntimeError as e:  # network failure: skip, a later run retries it
         print(f"  skip {ts}: {e}", flush=True)
         return ts, "retry"
-    corpus, counts, domains = match.count_batch(reg, b.articles, params.PERSON_OFFSET_MAX)
-    return ts, (b.md5, corpus, len(b.articles), counts, domains)
+    samples: dict = {}
+    corpus, counts, domains = match.count_batch(reg, b.articles, params.PERSON_OFFSET_MAX, samples)
+    return ts, (b.md5, corpus, len(b.articles), counts, domains, samples)
 
 
 def ingest(args) -> None:
@@ -60,8 +61,9 @@ def ingest(args) -> None:
             elif res is None:
                 st.put_missing(ts)
             else:
-                md5, corpus, n_art, counts, domains = res
+                md5, corpus, n_art, counts, domains, samples = res
                 st.put(ts, md5, corpus, n_art, reg.version, counts, domains)
+                st.put_headlines(ts, samples)
             done += 1
             if done % 25 == 0 or done == len(todo):
                 print(f"  {done}/{len(todo)}  {ts}", flush=True)
@@ -168,6 +170,17 @@ def post(args) -> None:
             print(f"{ckey}: funding applied")
 
 
+def explain_cmd(args) -> None:
+    """Why-is-it-moving notes for the biggest movers (Kimi when MOONSHOT_API_KEY is set; headlines otherwise)."""
+    st = Store(args.db)
+    doc = explain.build(oracle.snapshot(st, registry.load()), st)
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(doc, indent=1, ensure_ascii=False))
+    n = sum(1 for c in doc["categories"].values() for e in c["entities"].values() if e["why"])
+    print(f"wrote {out}: {sum(len(c['entities']) for c in doc['categories'].values())} movers, {n} with notes ({doc['model'] or 'no model key'})")
+
+
 def candidates(args) -> None:
     """Watchlist entities that pass the gate and could be listed, plus listed ones that currently fail it."""
     reg = registry.load()
@@ -188,6 +201,8 @@ def keeper(args) -> None:
     while True:
         try:
             ingest(argparse.Namespace(db=args.db, latest=True, hours=None, days=0, every=1, workers=4, recount=False))
+            snapshot(argparse.Namespace(db=args.db, at=None, out=str(ROOT / "out" / "latest.json")))
+            explain_cmd(argparse.Namespace(db=args.db, out=str(ROOT / "out" / "explain.json")))
             post(args)
         except Exception as e:  # keep the keeper alive through network blips
             print(f"keeper error: {e}", flush=True)
@@ -213,6 +228,9 @@ def main(argv=None) -> None:
     r = sub.add_parser("report")
     r.add_argument("--at", default=None)
     r.set_defaults(fn=report)
+    ex = sub.add_parser("explain")
+    ex.add_argument("--out", default=str(ROOT / "out" / "explain.json"))
+    ex.set_defaults(fn=explain_cmd)
     cd = sub.add_parser("candidates")
     cd.set_defaults(fn=candidates)
     mf = sub.add_parser("manifest")

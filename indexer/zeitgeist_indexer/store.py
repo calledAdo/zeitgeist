@@ -7,6 +7,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 SCHEMA = """
+CREATE TABLE IF NOT EXISTS headlines (   -- display only: not an oracle input, not in inputs_hash
+  ts TEXT NOT NULL, category TEXT NOT NULL, entity TEXT NOT NULL, title TEXT NOT NULL, url TEXT NOT NULL, domain TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS headlines_ent ON headlines(category, entity, ts);
 CREATE TABLE IF NOT EXISTS batches (
   ts        TEXT PRIMARY KEY,      -- GDELT file stamp YYYYMMDDHHMMSS
   md5       TEXT NOT NULL,         -- md5 of the zip consumed (input commitment)
@@ -49,6 +53,17 @@ class Store:
                 "INSERT INTO counts VALUES (?,?,?,?,?)",
                 [(ts, c, e, n, domains.get((c, e), 0)) for (c, e), n in counts.items()],
             )
+
+    def put_headlines(self, ts: str, samples: dict) -> None:
+        with self.db:
+            self.db.execute("DELETE FROM headlines WHERE ts=?", (ts,))
+            self.db.executemany("INSERT INTO headlines VALUES (?,?,?,?,?,?)",
+                                [(ts, c, e, t, u, d) for (c, e), rows in samples.items() for t, u, d in rows])
+
+    def headlines(self, category: str, entity: str, since_ts: str, limit: int = 12) -> list[tuple[str, str, str, str]]:
+        return self.db.execute(
+            "SELECT ts, title, url, domain FROM headlines WHERE category=? AND entity=? AND ts > ? ORDER BY ts DESC LIMIT ?",
+            (category, entity, since_ts, limit)).fetchall()
 
     def put_missing(self, ts: str) -> None:
         now = datetime.now(timezone.utc).isoformat(timespec="seconds")
