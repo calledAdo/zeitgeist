@@ -1,0 +1,1151 @@
+{
+ "as_of": "20261008221500",
+ "params_version": "v5.0",
+ "params": {
+  "BATCH_MINUTES": 15,
+  "CHARACTER_DAYS": 28,
+  "CHARACTER_MIN_DAYS": 14,
+  "EPS_STORIES": 0.02,
+  "EWMA_HALF_LIFE_H": 12.0,
+  "HEAT_CLAMP": 3.0,
+  "LAMBDA": 0.35,
+  "MIN_STORIES_PER_DAY": 20.0,
+  "PARAMS_VERSION": "v5.0",
+  "PERSON_OFFSET_MAX": 500,
+  "SIGMA_FLOOR": 0.15,
+  "TWAP_HOURS": 8.0
+ },
+ "registry_version": "2026-10-08.2",
+ "registry_digest": "73673beef6220781a69c53c9634034e0e09292e3c7d7c263b82e477ae93395f5",
+ "character_anchor": "20261008000000",
+ "batches_used": 737,
+ "inputs_hash": "a1723ee410e8f0c6f6a9175313cbe46c865277b91ef8994641cff6e6ed86b758",
+ "categories": {
+  "geopolitics": {
+   "label": "Geopolitics",
+   "entities": [
+    {
+     "key": "merz",
+     "name": "Friedrich Merz",
+     "listed": true,
+     "index": 7,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.001072249969312607,
+     "heat": 1.0195790341464286,
+     "target": 0.12885260643766802,
+     "target_twap": 0.12670439532510092,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.891775,
+      "sigma": 1.033543,
+      "per_day": 44.987797,
+      "plus1": 2.811008
+     }
+    },
+    {
+     "key": "zelensky",
+     "name": "Volodymyr Zelensky",
+     "listed": true,
+     "index": 6,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.001394251269591727,
+     "heat": 0.21302152918287895,
+     "target": 0.09716145104561172,
+     "target_twap": 0.10351240121171044,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.727395,
+      "sigma": 0.713529,
+      "per_day": 113.725758,
+      "plus1": 2.041182
+     }
+    },
+    {
+     "key": "modi",
+     "name": "Narendra Modi",
+     "listed": true,
+     "index": 1,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.003217569522370426,
+     "heat": 0.07636225077702884,
+     "target": 0.09262353723706153,
+     "target_twap": 0.0976731257083706,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -5.79931,
+      "sigma": 0.788098,
+      "per_day": 299.095068,
+      "plus1": 2.19921
+     }
+    },
+    {
+     "key": "ramaphosa",
+     "name": "Cyril Ramaphosa",
+     "listed": true,
+     "index": 11,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.0002247585067844457,
+     "heat": -0.21271362888218043,
+     "target": 0.08371069384379452,
+     "target_twap": 0.08773279048312961,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.234177,
+      "sigma": 0.781833,
+      "per_day": 25.617757,
+      "plus1": 2.185475
+     }
+    },
+    {
+     "key": "erdogan",
+     "name": "Recep Tayyip Erdogan",
+     "listed": true,
+     "index": 12,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.00023061439154378857,
+     "heat": -0.18358169280488076,
+     "target": 0.08456858914156483,
+     "target_twap": 0.08726515022948005,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.244197,
+      "sigma": 0.711217,
+      "per_day": 24.973255,
+      "plus1": 2.036468
+     }
+    },
+    {
+     "key": "putin",
+     "name": "Vladimir Putin",
+     "listed": true,
+     "index": 3,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.0014920332664544965,
+     "heat": -0.3378588856872564,
+     "target": 0.08012323552076386,
+     "target_twap": 0.08355516847968435,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.281875,
+      "sigma": 0.668149,
+      "per_day": 175.783047,
+      "plus1": 1.950624
+     }
+    },
+    {
+     "key": "netanyahu",
+     "name": "Benjamin Netanyahu",
+     "listed": true,
+     "index": 5,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.0008789732465955211,
+     "heat": -0.4031717883044831,
+     "target": 0.07831243303064857,
+     "target_twap": 0.07976485204813032,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.643786,
+      "sigma": 0.974696,
+      "per_day": 162.945122,
+      "plus1": 2.650361
+     }
+    },
+    {
+     "key": "starmer",
+     "name": "Keir Starmer",
+     "listed": true,
+     "index": 10,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.00026569741025488157,
+     "heat": -0.006135855402813516,
+     "target": 0.0899873364227392,
+     "target_twap": 0.07882371718902707,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.227712,
+      "sigma": 0.886695,
+      "per_day": 27.450712,
+      "plus1": 2.427094
+     }
+    },
+    {
+     "key": "macron",
+     "name": "Emmanuel Macron",
+     "listed": true,
+     "index": 8,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.00033019948692469847,
+     "heat": -0.6572251940615311,
+     "target": 0.0716496081623717,
+     "target_twap": 0.07590155815844662,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.505984,
+      "sigma": 0.77573,
+      "per_day": 52.174644,
+      "plus1": 2.172178
+     }
+    },
+    {
+     "key": "carney",
+     "name": "Mark Carney",
+     "listed": true,
+     "index": 4,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 3,
+     "attention": 0.0012107717378922263,
+     "heat": -0.482136490024515,
+     "target": 0.07617769717801665,
+     "target_twap": 0.07020238953370218,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.414145,
+      "sigma": 0.62711,
+      "per_day": 156.359152,
+      "plus1": 1.872192
+     }
+    },
+    {
+     "key": "trump",
+     "name": "Donald Trump",
+     "listed": true,
+     "index": 0,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 40,
+     "attention": 0.028758076966900466,
+     "heat": -0.7310008605828608,
+     "target": 0.0698231908836564,
+     "target_twap": 0.0636754433734147,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -3.409108,
+      "sigma": 0.191147,
+      "per_day": 2628.764048,
+      "plus1": 1.210637
+     }
+    },
+    {
+     "key": "xi",
+     "name": "Xi Jinping",
+     "listed": true,
+     "index": 2,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.00014090975942211844,
+     "heat": -1.8613263384964038,
+     "target": 0.04700962109610305,
+     "target_twap": 0.0451890082598032,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.338404,
+      "sigma": 1.358701,
+      "per_day": 260.845744,
+      "plus1": 3.891136
+     }
+    },
+    {
+     "key": "lula",
+     "name": "Lula da Silva",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 0.0002985618061140027,
+     "heat": 0.7607899464461515,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.994302,
+      "sigma": 1.153759,
+      "per_day": 15.937304,
+      "plus1": 3.170086
+     }
+    },
+    {
+     "key": "milei",
+     "name": "Javier Milei",
+     "listed": true,
+     "index": 9,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 5.442559223854066e-05,
+     "heat": -0.6337146500555276,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.106257,
+      "sigma": 1.124195,
+      "per_day": 14.296894,
+      "plus1": 3.077739
+     }
+    },
+    {
+     "key": "meloni",
+     "name": "Giorgia Meloni",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 0.00023103679194585373,
+     "heat": 0.546983479217045,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.904924,
+      "sigma": 0.972589,
+      "per_day": 13.92605,
+      "plus1": 2.644783
+     }
+    },
+    {
+     "key": "kim",
+     "name": "Kim Jong Un",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 4.2922578653544934e-05,
+     "heat": -0.3682430211768131,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.708031,
+      "sigma": 0.945248,
+      "per_day": 5.114286,
+      "plus1": 2.573452
+     }
+    },
+    {
+     "key": "mbs",
+     "name": "Mohammed bin Salman",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 1.9369800190692902e-05,
+     "heat": -0.7298692975431138,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -10.475227,
+      "sigma": 0.515939,
+      "per_day": 0.428571,
+      "plus1": 1.675211
+     }
+    },
+    {
+     "key": "sheinbaum",
+     "name": "Claudia Sheinbaum",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 5.9407880089063335e-05,
+     "heat": -0.3068029651477873,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.473824,
+      "sigma": 0.838516,
+      "per_day": 5.820168,
+      "plus1": 2.312932
+     }
+    }
+   ],
+   "funding": {
+    "keys": [
+     "merz",
+     "zelensky",
+     "modi",
+     "ramaphosa",
+     "erdogan",
+     "putin",
+     "netanyahu",
+     "starmer",
+     "macron",
+     "carney",
+     "trump",
+     "xi"
+    ],
+    "targets_wad": [
+     "126704395325100840",
+     "103512401211710448",
+     "97673125708370592",
+     "87732790483129616",
+     "87265150229480048",
+     "83555168479684352",
+     "79764852048130320",
+     "78823717189027072",
+     "75901558158446624",
+     "70202389533702184",
+     "63675443373414704",
+     "45189008259803200"
+    ]
+   }
+  },
+  "tech_companies": {
+   "label": "Tech Companies",
+   "entities": [
+    {
+     "key": "microsoft",
+     "name": "Microsoft",
+     "listed": true,
+     "index": 8,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 12,
+     "attention": 0.0036830166923672485,
+     "heat": 2.5036398203476575,
+     "target": 0.14843658399191223,
+     "target_twap": 0.1334715681940094,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.192233,
+      "sigma": 0.63436,
+      "per_day": 73.662477,
+      "plus1": 1.885816
+     }
+    },
+    {
+     "key": "amazon",
+     "name": "Amazon",
+     "listed": true,
+     "index": 2,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 4,
+     "attention": 0.004215789367701105,
+     "heat": 1.4072061110577045,
+     "target": 0.10112991980824008,
+     "target_twap": 0.10364667601123581,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.171303,
+      "sigma": 0.499134,
+      "per_day": 195.749288,
+      "plus1": 1.647294
+     }
+    },
+    {
+     "key": "google",
+     "name": "Google",
+     "listed": true,
+     "index": 6,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 2,
+     "attention": 0.002570665271550756,
+     "heat": 1.0029361281727713,
+     "target": 0.08778683364814939,
+     "target_twap": 0.08965712002946517,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.395521,
+      "sigma": 0.430666,
+      "per_day": 142.291049,
+      "plus1": 1.538281
+     }
+    },
+    {
+     "key": "samsung",
+     "name": "Samsung",
+     "listed": true,
+     "index": 9,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.0008643492761971471,
+     "heat": 0.8171961766146583,
+     "target": 0.0822614465629822,
+     "target_twap": 0.08458463545712248,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.347129,
+      "sigma": 0.359272,
+      "per_day": 54.63281,
+      "plus1": 1.432286
+     }
+    },
+    {
+     "key": "meta",
+     "name": "Meta",
+     "listed": true,
+     "index": 5,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 3,
+     "attention": 0.0020858120497665106,
+     "heat": 0.7619074945936125,
+     "target": 0.08068490517911099,
+     "target_twap": 0.08145983357909516,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.48888,
+      "sigma": 0.41512,
+      "per_day": 136.177274,
+      "plus1": 1.514552
+     }
+    },
+    {
+     "key": "tiktok",
+     "name": "TikTok",
+     "listed": true,
+     "index": 11,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 2,
+     "attention": 0.00070121302232333,
+     "heat": 0.5429965955963431,
+     "target": 0.07473381705201537,
+     "target_twap": 0.07290827175838113,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.575022,
+      "sigma": 0.575184,
+      "per_day": 43.073877,
+      "plus1": 1.777458
+     }
+    },
+    {
+     "key": "netflix",
+     "name": "Netflix",
+     "listed": true,
+     "index": 3,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.0019059284939465454,
+     "heat": 0.3641541562321975,
+     "target": 0.07019926499130727,
+     "target_twap": 0.071336365824837,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.367964,
+      "sigma": 0.288827,
+      "per_day": 141.725174,
+      "plus1": 1.334861
+     }
+    },
+    {
+     "key": "nvidia",
+     "name": "Nvidia",
+     "listed": true,
+     "index": 7,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 4,
+     "attention": 0.0011095501217611968,
+     "heat": 0.1560902225392046,
+     "target": 0.06526888724266283,
+     "target_twap": 0.0656130150773851,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.878458,
+      "sigma": 0.478295,
+      "per_day": 90.425795,
+      "plus1": 1.613321
+     }
+    },
+    {
+     "key": "tesla",
+     "name": "Tesla",
+     "listed": true,
+     "index": 10,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.0005935661264567434,
+     "heat": -0.00914359888468685,
+     "target": 0.06160134018031425,
+     "target_twap": 0.06455194665893907,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.425958,
+      "sigma": 0.372306,
+      "per_day": 48.292145,
+      "plus1": 1.451077
+     }
+    },
+    {
+     "key": "amd",
+     "name": "AMD",
+     "listed": true,
+     "index": 13,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.00033400300950868874,
+     "heat": -0.2261523758852992,
+     "target": 0.05709579975655804,
+     "target_twap": 0.05866163535053434,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.872795,
+      "sigma": 0.581756,
+      "per_day": 33.618268,
+      "plus1": 1.789178
+     }
+    },
+    {
+     "key": "apple",
+     "name": "Apple",
+     "listed": true,
+     "index": 0,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.001753478211179582,
+     "heat": -0.6987683926157006,
+     "target": 0.04839105335848406,
+     "target_twap": 0.05024085413170111,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.022716,
+      "sigma": 0.462868,
+      "per_day": 215.189185,
+      "plus1": 1.588624
+     }
+    },
+    {
+     "key": "openai",
+     "name": "OpenAI",
+     "listed": true,
+     "index": 1,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.001827081682521555,
+     "heat": -0.7583356401760282,
+     "target": 0.04739261486492402,
+     "target_twap": 0.046904592726451325,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -5.990404,
+      "sigma": 0.414897,
+      "per_day": 210.346218,
+      "plus1": 1.514214
+     }
+    },
+    {
+     "key": "anthropic",
+     "name": "Anthropic",
+     "listed": true,
+     "index": 4,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.0006975246295404421,
+     "heat": -1.145174932802525,
+     "target": 0.04139138053866178,
+     "target_twap": 0.04119364075461869,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.491431,
+      "sigma": 0.678099,
+      "per_day": 143.116697,
+      "plus1": 1.970128
+     }
+    },
+    {
+     "key": "huawei",
+     "name": "Huawei",
+     "listed": true,
+     "index": 12,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 5.4728399427191993e-05,
+     "heat": -1.7387993257237684,
+     "target": 0.03362615282467744,
+     "target_twap": 0.03576984444622424,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.2942,
+      "sigma": 0.87355,
+      "per_day": 26.55506,
+      "plus1": 2.395399
+     }
+    },
+    {
+     "key": "tsmc",
+     "name": "TSMC",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 1,
+     "attention": 0.00044911917396743474,
+     "heat": 1.824421298037154,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.153074,
+      "sigma": 0.791951,
+      "per_day": 9.250712,
+      "plus1": 2.207699
+     }
+    },
+    {
+     "key": "intel",
+     "name": "Intel",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 1,
+     "attention": 0.00017528604726130276,
+     "heat": 0.5377614886692544,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.971835,
+      "sigma": 0.600162,
+      "per_day": 9.81023,
+      "plus1": 1.822414
+     }
+    }
+   ],
+   "funding": {
+    "keys": [
+     "microsoft",
+     "amazon",
+     "google",
+     "samsung",
+     "meta",
+     "tiktok",
+     "netflix",
+     "nvidia",
+     "tesla",
+     "amd",
+     "apple",
+     "openai",
+     "anthropic",
+     "huawei"
+    ],
+    "targets_wad": [
+     "133471568194009376",
+     "103646676011235808",
+     "89657120029465168",
+     "84584635457122480",
+     "81459833579095152",
+     "72908271758381136",
+     "71336365824837000",
+     "65613015077385096",
+     "64551946658939072",
+     "58661635350534344",
+     "50240854131701112",
+     "46904592726451328",
+     "41193640754618688",
+     "35769844446224240"
+    ]
+   }
+  },
+  "tech_personalities": {
+   "label": "Tech Personalities",
+   "entities": [
+    {
+     "key": "huang",
+     "name": "Jensen Huang",
+     "listed": true,
+     "index": 6,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 3,
+     "attention": 0.0015379543069050277,
+     "heat": 2.095088043598187,
+     "target": 0.2773827955780677,
+     "target_twap": 0.2660354115053188,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.370679,
+      "sigma": 0.903722,
+      "per_day": 25.095287,
+      "plus1": 2.468775
+     }
+    },
+    {
+     "key": "musk",
+     "name": "Elon Musk",
+     "listed": true,
+     "index": 1,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 12,
+     "attention": 0.0043446600902730444,
+     "heat": 2.1948434455438814,
+     "target": 0.28723849863771383,
+     "target_twap": 0.2649928869098406,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -6.789656,
+      "sigma": 0.615465,
+      "per_day": 103.240263,
+      "plus1": 1.850516
+     }
+    },
+    {
+     "key": "zuckerberg",
+     "name": "Mark Zuckerberg",
+     "listed": true,
+     "index": 0,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.0004963940892625015,
+     "heat": 0.5436190874860941,
+     "target": 0.16115785509207822,
+     "target_twap": 0.17309881926858298,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.124508,
+      "sigma": 0.949871,
+      "per_day": 39.00738,
+      "plus1": 2.585376
+     }
+    },
+    {
+     "key": "altman",
+     "name": "Sam Altman",
+     "listed": true,
+     "index": 3,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 1,
+     "attention": 0.00033060399099971166,
+     "heat": -0.7254606531769378,
+     "target": 0.10335880121547955,
+     "target_twap": 0.11098205853950505,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.340515,
+      "sigma": 0.929168,
+      "per_day": 79.651882,
+      "plus1": 2.5324
+     }
+    },
+    {
+     "key": "amodei",
+     "name": "Dario Amodei",
+     "listed": true,
+     "index": 2,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 0.0001431646221475699,
+     "heat": -0.9945446126194394,
+     "target": 0.0940688589407223,
+     "target_twap": 0.10171099445370402,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -7.461434,
+      "sigma": 1.397706,
+      "per_day": 99.976471,
+      "plus1": 4.045908
+     }
+    },
+    {
+     "key": "gates",
+     "name": "Bill Gates",
+     "listed": true,
+     "index": 4,
+     "eligible": true,
+     "reason": null,
+     "stories_last_batch": 0,
+     "attention": 3.136361521555192e-05,
+     "heat": -1.5742905688728102,
+     "target": 0.07679319053593844,
+     "target_twap": 0.08317982932304861,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.64742,
+      "sigma": 1.094107,
+      "per_day": 22.010084,
+      "plus1": 2.986515
+     }
+    },
+    {
+     "key": "cook",
+     "name": "Tim Cook",
+     "listed": true,
+     "index": 5,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 0.00014303638024217887,
+     "heat": 0.12365552149130006,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -8.978661,
+      "sigma": 1.020981,
+      "per_day": 13.657143,
+      "plus1": 2.775916
+     }
+    },
+    {
+     "key": "pichai",
+     "name": "Sundar Pichai",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 4.226729070083897e-05,
+     "heat": -0.32727606279196786,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.7495,
+      "sigma": 0.98387,
+      "per_day": 6.754622,
+      "plus1": 2.674788
+     }
+    },
+    {
+     "key": "nadella",
+     "name": "Satya Nadella",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 4,
+     "attention": 0.0007266320309685227,
+     "heat": 2.3320555640511262,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.359119,
+      "sigma": 0.914227,
+      "per_day": 8.52437,
+      "plus1": 2.494846
+     }
+    },
+    {
+     "key": "bezos",
+     "name": "Jeff Bezos",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 0.0003068168016823672,
+     "heat": 1.431623349238735,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.344969,
+      "sigma": 0.877123,
+      "per_day": 7.760833,
+      "plus1": 2.403973
+     }
+    },
+    {
+     "key": "hassabis",
+     "name": "Demis Hassabis",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 3.121551772350016e-05,
+     "heat": -0.24258484527040383,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -10.146769,
+      "sigma": 0.939161,
+      "per_day": 3.828571,
+      "plus1": 2.557835
+     }
+    },
+    {
+     "key": "su",
+     "name": "Lisa Su",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 3,
+     "attention": 0.0012937717161448893,
+     "heat": 3.0,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.996934,
+      "sigma": 0.859774,
+      "per_day": 3.781513,
+      "plus1": 2.362627
+     }
+    },
+    {
+     "key": "ellison",
+     "name": "Larry Ellison",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 6.350390164075698e-05,
+     "heat": -0.13529809892219452,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.544991,
+      "sigma": 0.882632,
+      "per_day": 6.065035,
+      "plus1": 2.417253
+     }
+    },
+    {
+     "key": "thiel",
+     "name": "Peter Thiel",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 8.750506944774539e-05,
+     "heat": 0.30948357299181173,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -9.581478,
+      "sigma": 0.767939,
+      "per_day": 5.652758,
+      "plus1": 2.15532
+     }
+    },
+    {
+     "key": "son",
+     "name": "Masayoshi Son",
+     "listed": false,
+     "index": null,
+     "eligible": false,
+     "reason": "volume",
+     "stories_last_batch": 0,
+     "attention": 2.012235832578189e-05,
+     "heat": -0.7674926975483306,
+     "target": null,
+     "target_twap": null,
+     "character": {
+      "ready": true,
+      "days": 28,
+      "mu": -10.396755,
+      "sigma": 0.543229,
+      "per_day": 0.638655,
+      "plus1": 1.721557
+     }
+    }
+   ],
+   "funding": {
+    "keys": [
+     "huang",
+     "musk",
+     "zuckerberg",
+     "altman",
+     "amodei",
+     "gates"
+    ],
+    "targets_wad": [
+     "266035411505318784",
+     "264992886909840576",
+     "173098819268582976",
+     "110982058539505040",
+     "101710994453704016",
+     "83179829323048608"
+    ]
+   }
+  }
+ }
+}
