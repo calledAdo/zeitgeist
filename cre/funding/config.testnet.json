@@ -1,0 +1,16 @@
+{
+  "schedule": "0 */15 * * * *",
+  "chainSelectorName": "monad-testnet",
+  "targetsUrl": "http://localhost:3000/targets.json",
+  "gdeltLastUpdateUrl": "https://data.gdeltproject.org/gdeltv2/lastupdate.txt",
+  "receiver": "0xc29BA4Aa390458e8aCf45345a8e7839d7FCDf444",
+  "oracle": "0xa7C20382968C1dbC81B1Bf3A00691868941F0b01",
+  "markets": {
+    "geopolitics": "0xC55d8F48e1fECE102aDCD0a3BdA7DB0E279eEa33",
+    "tech_companies": "0x86764a89C5Ce4aFD20d952D81e389A1e1c51194b",
+    "tech_personalities": "0xa6498487Fa8be27c1C6cD3b964FA85217d0f7878"
+  },
+  "maxLagMinutes": 45,
+  "minPostIntervalMinutes": 480,
+  "gasLimit": "2000000"
+}

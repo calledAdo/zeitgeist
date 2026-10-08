@@ -16,7 +16,6 @@ contracts/broadcast/*/31337/
 node_modules/
 .envio/
 envio/generated/
-contracts/broadcast/*/10143/
 contracts/deployments/*-fork.json
 cre/funding/config.fork.json
 llmtimeline/

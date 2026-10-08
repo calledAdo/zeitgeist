@@ -18,7 +18,8 @@ const cfg = {
   oracle: dep.oracle,
   markets: Object.fromEntries(keys.map((k) => [k, dep[k]])),
   maxLagMinutes: 45,
-  gasLimit: "6000000",
+  minPostIntervalMinutes: 480,
+  gasLimit: "2000000",
 };
 fs.writeFileSync(path.join(here, `config.${target}.json`), JSON.stringify(cfg, null, 2) + "\n");
 console.log(`wrote config.${target}.json (receiver ${dep.receiver})`);

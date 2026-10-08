@@ -42,6 +42,7 @@ export const configSchema = z.object({
   oracle: z.string(),
   markets: z.record(z.string(), z.string()), // category key -> market address
   maxLagMinutes: z.number(),
+  minPostIntervalMinutes: z.number(), // re-post fresh targets at most this often when no round is due (gas)
   gasLimit: z.string(),
 })
 export type Config = z.infer<typeof configSchema>
@@ -103,7 +104,9 @@ export const onCron = (runtime: Runtime<Config>): string => {
   const first = keys[0]
   const latest = decodeFunctionResult({ abi: ORACLE_ABI, functionName: 'latest',
     data: read(cfg.oracle, encodeFunctionData({ abi: ORACLE_ABI, functionName: 'latest', args: [categoryId(first)] })) })
+  const nowSec = Math.floor(runtime.now().getTime() / 1000)
   const fresh = obs.asOf > Number(latest.asOf)
+  const postDue = fresh && nowSec - Number(latest.postedAt) >= cfg.minPostIntervalMinutes * 60
   const due = keys.filter((k) => {
     const m = cfg.markets[k]
     if (!m) return false
@@ -111,16 +114,17 @@ export const onCron = (runtime: Runtime<Config>): string => {
       decodeFunctionResult({ abi: MARKET_ABI, functionName: fn, data: read(m, encodeFunctionData({ abi: MARKET_ABI, functionName: fn })) })
     return epoch('currentEpoch') > epoch('lastFundedEpoch')
   })
-  if (!fresh && due.length === 0) {
-    runtime.log(`snapshot ${obs.asOf} already posted and no epoch due`)
-    return JSON.stringify({ sent: false, reason: 'nothing-due', asOf: obs.asOf })
+  // every report costs gas: send for a funding round, or to refresh targets at most every minPostIntervalMinutes
+  if (due.length === 0 && !postDue) {
+    runtime.log(`no round due; last post ${Math.round((nowSec - Number(latest.postedAt)) / 60)} min ago (fresh=${fresh}): nothing sent`)
+    return JSON.stringify({ sent: false, reason: 'nothing-due', asOf: obs.asOf, fresh })
   }
 
   const report = runtime.report({ encodedPayload: hexToBase64(obs.report), encoderName: 'evm', signingAlgo: 'ecdsa', hashingAlgo: 'keccak256' }).result()
   const wr = evm.writeReport(runtime, { receiver: cfg.receiver, report, gasConfig: { gasLimit: cfg.gasLimit } }).result()
   const ok = wr.txStatus === TxStatus.SUCCESS
   const tx = wr.txHash ? bytesToHex(wr.txHash) : null
-  runtime.log(`report asOf=${obs.asOf} fresh=${fresh} due=[${due.join(',')}] -> ${ok ? 'sent' : `failed ${wr.errorMessage ?? ''}`} ${tx ?? ''}`)
+  runtime.log(`report asOf=${obs.asOf} fresh=${fresh} postDue=${postDue} due=[${due.join(',')}] -> ${ok ? 'sent' : `failed ${wr.errorMessage ?? ''}`} ${tx ?? ''}`)
   return JSON.stringify({ sent: ok, asOf: obs.asOf, fresh, due, tx })
 }
 

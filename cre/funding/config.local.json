@@ -11,5 +11,6 @@
     "tech_personalities": "0xb7278A61aa25c888815aFC32Ad3cC52fF24fE575"
   },
   "maxLagMinutes": 45,
-  "gasLimit": "6000000"
+  "minPostIntervalMinutes": 480,
+  "gasLimit": "2000000"
 }
