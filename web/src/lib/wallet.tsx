@@ -13,7 +13,15 @@ import { chain } from "./contracts";
 import { confirmWithPasskey, createAccount, meraMessage, signIn, type MeraSession } from "./mera";
 import { unlockCallsRoot } from "./calls-crypto";
 
-export const publicClient = createPublicClient({ chain, transport: http() });
+// Reads are coalesced: concurrent readContract calls become one multicall3 call (on chains that have it),
+// so a full board refresh is a handful of RPC requests instead of hundreds. NEXT_PUBLIC_RPC_URL can
+// point at a dedicated endpoint; the chain's public RPC is the default.
+const RPC = process.env.NEXT_PUBLIC_RPC_URL || undefined;
+export const publicClient = createPublicClient({
+  chain,
+  transport: http(RPC, { batch: { wait: 16 } }),
+  batch: chain.contracts?.multicall3 ? { multicall: { wait: 16 } } : undefined,
+});
 
 export const SESSION_CAP = 1_000_000_000n; // $1,000 of buys (6dp) before the passkey is asked again
 export const SESSION_IDLE_MS = 30 * 60_000;
@@ -81,7 +89,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
   const start = useCallback(async (s: MeraSession) => {
     setMera(s);
-    setWallet(createWalletClient({ account: s.account, chain, transport: http() }));
+    setWallet(createWalletClient({ account: s.account, chain, transport: http(RPC) }));
     setSpent(0n);
     writeHint(s.credential);
     touch();

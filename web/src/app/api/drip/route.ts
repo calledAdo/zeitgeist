@@ -25,10 +25,11 @@ export async function POST(req: Request) {
   if (!from) return NextResponse.json({ error: "drip not configured" }, { status: 503 });
   const last = recent.get(address.toLowerCase()) ?? 0;
   if (Date.now() - last < 6 * 3600_000) return NextResponse.json({ skipped: "recently dripped" });
-  const pub = createPublicClient({ chain, transport: http() });
+  const rpc = process.env.NEXT_PUBLIC_RPC_URL || undefined;
+  const pub = createPublicClient({ chain, transport: http(rpc) });
   if ((await pub.getBalance({ address })) >= THRESHOLD) return NextResponse.json({ skipped: "has gas" });
   recent.set(address.toLowerCase(), Date.now());
-  const hash = await createWalletClient({ account: from, chain, transport: http() }).sendTransaction({ to: address, value: AMOUNT });
+  const hash = await createWalletClient({ account: from, chain, transport: http(rpc) }).sendTransaction({ to: address, value: AMOUNT });
   await pub.waitForTransactionReceipt({ hash });
   return NextResponse.json({ hash });
 }
