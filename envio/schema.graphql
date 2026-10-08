@@ -1,0 +1,146 @@
+# Zeitgeist on Monad: markets, trades, funding rounds, positions and the ve(3,3) layer.
+# Prices are USD with 6 decimals (the quote asset's units); shares have 18.
+
+type Market {
+  id: ID!                     # market address (lowercase)
+  category: String!
+  listings: [Listing!]! @derivedFrom(field: "market")
+  rounds: [FundingRound!]! @derivedFrom(field: "market")
+  totalReserve: BigInt!
+  volume: BigInt!
+  feesAccrued: BigInt!
+  feesToVoters: BigInt!
+  feesToTreasury: BigInt!
+}
+
+type Listing {
+  id: ID!                     # <market>-<index>
+  market: Market!
+  category: String!
+  index: Int!
+  name: String!
+  token: String!
+  reserve: BigInt!
+  supply: BigInt!
+  price: BigInt!              # 2·R/S, USD 6dp
+  volume: BigInt!
+  trades: Int!
+  holders: Int!
+  fundingNet: BigInt!         # cumulative reserve moved in (+) or out (−) by funding
+  lastFundingDelta: BigInt!
+  points: [PricePoint!]! @derivedFrom(field: "listing")
+}
+
+# One row per price change, so charts show trades and the funding steps between them.
+type PricePoint {
+  id: ID!
+  listing: Listing!
+  kind: String!               # list | buy | sell | funding
+  price: BigInt!
+  reserve: BigInt!
+  supply: BigInt!
+  timestamp: Int! @index
+  txHash: String!
+}
+
+type Trade {
+  id: ID!
+  listing: Listing!
+  trader: Trader!
+  side: String!               # buy | sell
+  usd: BigInt!                # gross USD in (buy) or out before fee (sell)
+  fee: BigInt!
+  shares: BigInt!
+  priceAfter: BigInt!
+  timestamp: Int! @index
+  txHash: String!
+}
+
+type FundingRound {
+  id: ID!                     # <market>-<epoch>
+  market: Market!
+  category: String!
+  epoch: BigInt!
+  inputsHash: String!
+  moved: BigInt!              # total reserve moved toward hot names (= total taken from cold)
+  deltas: [BigInt!]!
+  timestamp: Int!
+  txHash: String!
+}
+
+type TargetsPost {
+  id: ID!
+  category: String!
+  asOf: BigInt!
+  inputsHash: String!
+  targets: [BigInt!]!
+  timestamp: Int!
+  txHash: String!
+}
+
+# Average-cost accounting: realised PnL books on sells, cost basis scales down with shares sold.
+type Position {
+  id: ID!                     # <entity>-<user>
+  listing: Listing!
+  trader: Trader!
+  shares: BigInt!
+  costBasis: BigInt!
+  realizedPnl: BigInt!
+}
+
+type Trader {
+  id: ID!                     # address (lowercase)
+  positions: [Position!]! @derivedFrom(field: "trader")
+  trades: Int!
+  volume: BigInt!
+  realizedPnl: BigInt!
+  feesPaid: BigInt!
+}
+
+type Vote {
+  id: ID!
+  epoch: BigInt!
+  user: String!
+  categories: [String!]!
+  amounts: [BigInt!]!
+  timestamp: Int!
+}
+
+type CategoryEpoch {
+  id: ID!                     # <category>-<epoch>
+  category: String!
+  epoch: BigInt!
+  votes: BigInt!
+}
+
+type Lock {
+  id: ID!                     # user
+  amount: BigInt!
+  end: BigInt!
+}
+
+type Stake {
+  id: ID!                     # <gauge>-<index>-<user>
+  user: String!
+  gauge: String!
+  index: Int!
+  amount: BigInt!
+  rewardsPaid: BigInt!
+}
+
+# Sealed attention calls: ciphertext at seal time, opened when the caller publishes that call's key.
+type Call {
+  id: ID!                     # callId (bytes16 hex)
+  caller: String! @index
+  sealedAt: Int!
+  horizonEnd: Int!
+  ciphertext: String!
+  revealed: Boolean!
+  key: String
+  opened: Boolean!            # the revealed key decrypted the ciphertext (AES-GCM tag verified)
+  category: String
+  entityKey: String
+  direction: String           # up | down
+  note: String
+  revealedAt: Int
+}

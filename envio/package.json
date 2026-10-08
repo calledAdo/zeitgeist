@@ -1,0 +1,22 @@
+{
+  "name": "zeitgeist-envio",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "config:local": "node gen-config.mjs 31337",
+    "codegen": "envio codegen",
+    "dev": "envio dev",
+    "start": "envio start",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "envio": "3.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "22",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  }
+}
