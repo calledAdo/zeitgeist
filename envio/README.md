@@ -18,10 +18,10 @@ funding adds each signed delta), so indexed prices match `price(i)` on-chain to 
 ## Run
 
 ```bash
-bun install
+pnpm install
 node gen-config.mjs 31337          # local anvil (or: node gen-config.mjs 10143 <startBlock> for Monad testnet)
-npx envio codegen
-npx envio dev                      # needs Docker; GraphQL at http://localhost:8080/v1/graphql
+pnpm envio codegen
+pnpm envio dev                      # needs Docker; GraphQL at http://localhost:8080/v1/graphql
 ```
 
 The web app reads `NEXT_PUBLIC_INDEXER_URL` (default `http://localhost:8080/v1/graphql`) and falls back to

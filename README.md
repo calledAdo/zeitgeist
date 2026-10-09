@@ -81,7 +81,7 @@ cd web && npm run dev                 # http://localhost:3000
 Then, optionally:
 
 ```bash
-cd envio && bun install && node gen-config.mjs 31337 && npx envio dev     # indexer at :8080
+cd envio && pnpm install && node gen-config.mjs 31337 && pnpm envio dev     # indexer at :8080
 cd cre/funding && bun install && bun test && node gen-config.mjs local 31337 http://localhost:3000/targets.json
 cre workflow simulate funding -T local -R ..                                 # needs `cre login`
 cd indexer && uv run zg explain && cd ../web && npm run sync     # headlines; MOONSHOT_API_KEY adds Kimi notes
