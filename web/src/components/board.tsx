@@ -35,7 +35,7 @@ export function Board({ category }: { category: CategoryKey }) {
   const rows: Row[] = useMemo(() => {
     if (!snap || !state) return [];
     const ents = snap.categories[category]?.entities ?? [];
-    const byIndex = new Map(ents.filter((e) => e.index !== null).map((e) => [e.index!, e]));
+    const byIndex = new Map(ents.filter((e) => e.index !== null && e.listed).map((e) => [e.index!, e]));
     const total = Number(state.totalReserve) || 1;
     return state.entities
       .filter((c) => byIndex.has(c.index))

@@ -144,7 +144,7 @@ def snapshot(store: Store, reg: Registry, at: datetime | None = None) -> dict:
             per[e.key] = (e, ch, path)
 
         passes = {k for k, (e, ch, _) in per.items() if ch.ready and ch.per_day >= P.MIN_STORIES_PER_DAY}
-        eligible = [k for k, (e, ch, _) in per.items() if k in passes and e.index is not None]
+        eligible = [k for k, (e, ch, _) in per.items() if k in passes and e.index is not None and not e.delisted]
         # target at every batch inside the TWAP window, then average (spot = last batch)
         tw_sum = {k: 0.0 for k in eligible}
         spot: dict[str, float] = {}
@@ -166,11 +166,11 @@ def snapshot(store: Store, reg: Registry, at: datetime | None = None) -> dict:
             ents_out.append({
                 "key": k,
                 "name": e.name,
-                "listed": e.index is not None,
+                "listed": e.index is not None and not e.delisted,
                 "index": e.index,
                 "eligible": k in eligible,
-                "reason": None if k in eligible else (
-                    "candidate" if k in passes else ("history" if not ch.ready else "volume")),
+                "reason": None if k in eligible else ("delisted" if e.delisted else (
+                    "candidate" if k in passes else ("history" if not ch.ready else "volume"))),
                 "stories_last_batch": last_n,
                 "attention": I,
                 "heat": hc,

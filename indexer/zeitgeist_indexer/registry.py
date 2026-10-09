@@ -31,6 +31,7 @@ class Entity:
     sector: tuple[str, ...] = ()
     block: tuple[str, ...] = ()
     index: int | None = None          # on-chain market slot; None = watchlist
+    delisted: bool = False            # keeps its slot (append-only) but gets no target and is hidden
     offset_max: int = 500
     _re: dict = field(default_factory=dict, compare=False, hash=False, repr=False)
 
@@ -86,6 +87,7 @@ def load(path: Path | str = DEFAULT_PATH) -> Registry:
                     sector=tuple(x.lower() for x in e.get("sector", [])),
                     block=tuple(x.lower() for x in e.get("block", [])),
                     index=e.get("index"),
+                    delisted=bool(e.get("delisted")),
                     offset_max=c.get("person_offset_max", doc.get("person_offset_max", 500)),
                 )
             )

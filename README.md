@@ -97,6 +97,14 @@ libraries are pinned submodules (solady, forge-std) or package dependencies.
 **AI tools disclosure:** this project was built with substantial help from Claude Code (Anthropic), used for
 research, design discussion, writing code, tests and documentation, under the author's direction and review.
 
+## Image credits
+
+Portraits come from official government sites, company leadership pages, the person's own verified X
+account, or openly licensed press photos (Putin: Kremlin press office, CC BY 4.0; Musk: U.S. Air Force, public
+domain; Starmer-era UK portraits: UK Parliament, CC BY 3.0). Company logos come from each company's own site and
+are trademarks of their owners, shown only to identify them. Every image's source and credit is listed in
+[`web/src/generated/people.json`](web/src/generated/people.json) and [`logos.json`](web/src/generated/logos.json).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

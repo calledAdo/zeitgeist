@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-08.2",
+  "version": "2026-10-09.1",
   "notes": "Person rule (IDEATION_SOCIALFI §17.1): full name in V2Persons (or AllNames when allnames=true) with offset < 300, OR surname in title AND full name anywhere. Company rule (§15.2): tier A = name in title; tier B = canonical form in title, or name + sector token in title. Never the GDELT org field. GDELT truncates names at non-ASCII letters (e.g. 'recep tayyip erdo'), so truncated forms are listed as aliases; names and titles are accent-folded. Person centrality offset raised 300→500 (IDEATION §17.1 measured 82% precision / 94% recall at 500). Entities with an 'index' are listed on-chain in that slot (append-only); the rest are a watchlist. Heat is computed from GDELT news alone.",
   "categories": {
     "geopolitics": {
@@ -53,7 +53,8 @@
             "keir starmer"
           ],
           "surname": "starmer",
-          "index": 10
+          "index": 10,
+          "delisted": "2026-10-09: no longer UK Prime Minister. Slot 10 stays on-chain (markets are append-only); target is 0, so funding winds his reserve down to the others while holders can still sell."
         },
         "zelensky": {
           "name": "Volodymyr Zelensky",

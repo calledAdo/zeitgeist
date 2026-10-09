@@ -162,3 +162,10 @@ def test_listed_slots_are_contiguous():
     tp = REG.listed("tech_personalities")
     assert [e.key for e in tp] == ["zuckerberg", "musk", "amodei", "altman", "gates", "cook", "huang"]
     assert all(e.index is None for e in REG.categories["tech_personalities"] if e.key == "pichai")
+
+
+def test_delisted_keeps_slot_but_gets_no_target():
+    reg = REG
+    starmer = ent("geopolitics", "starmer")
+    assert starmer.delisted and starmer.index == 10
+    assert [e.index for e in reg.listed("geopolitics")] == list(range(len(reg.listed("geopolitics"))))  # vector stays aligned
