@@ -21,3 +21,19 @@ Log: `report asOf=1791499500 fresh=true postDue=true due=[] -> sent 0xa9f6…804
 
 Also changed after this run: the workflow now sends only when a round is due or the last post is older than
 `minPostIntervalMinutes` (480), since every report costs gas on Monad (billed on the gas limit).
+
+## First funding round on testnet, run by the GitHub Actions keeper (2026-10-09 00:00 UTC)
+
+GitHub Actions run https://github.com/calledAdo/zeitgeist/actions/runs/37862484310 (harness path: same
+decision logic and report, delivered through Chainlink's MockKeystoneForwarder; no CRE API key yet).
+
+```
+[HARNESS] indexer 20261009000000 vs GDELT 20261009000000: fingerprint match
+[HARNESS] report asOf=1791504000 postDue=false due=[geopolitics,tech_companies,tech_personalities]
+          tx 0x0762a077a41d59d5a1f74b93a1b94eb41528e7d8b7f27236278508c2f032cdac status=success applied=true
+```
+
+Receipt: `TargetsPosted` ×3, `Funded` ×3, `ReportApplied` ×1, `StepSkipped` ×1 (weekly emission not due).
+All three markets: `lastFundedEpoch = 62205`. Tech personalities prices after the round (USD, 6dp):
+Zuckerberg 1000621 · Musk 1079999 (+8%, capped) · Amodei 947926 · Altman 954974 · Gates 936477 ·
+Cook 1000000 (below the 20 stories/day gate: no target) · Huang 1080000 (+8%, capped).
