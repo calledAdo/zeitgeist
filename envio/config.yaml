@@ -36,9 +36,6 @@ contracts:
 chains:
   - id: 10143
     start_block: 69375874
-    rpc:
-      - url: https://testnet-rpc.monad.xyz
-        for: sync
     contracts:
       - name: CategoryMarket
         address:
