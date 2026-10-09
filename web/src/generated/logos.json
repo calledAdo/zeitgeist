@@ -1,0 +1,72 @@
+{
+  "amazon": {
+    "src": "/logos/amazon.png",
+    "source": "https://www.aboutamazon.com/_next/static/media/apple-touch-icon.706b1b87.png",
+    "site": "https://www.amazon.com"
+  },
+  "amd": {
+    "src": "/logos/amd.svg",
+    "source": "https://www.amd.com/content/dam/code/images/header/amd-header-logo.svg",
+    "site": "https://www.amd.com"
+  },
+  "anthropic": {
+    "src": "/logos/anthropic.png",
+    "source": "https://cdn.prod.website-files.com/67ce28cfec624e2b733f8a52/67d31dd7aa394792257596c5_webclip.png",
+    "site": "https://www.anthropic.com"
+  },
+  "apple": {
+    "src": "/logos/apple.png",
+    "source": "https://www.apple.com/apple-touch-icon.png",
+    "site": "https://www.apple.com"
+  },
+  "google": {
+    "src": "/logos/google.png",
+    "source": "https://www.gstatic.com/marketing-cms/assets/images/33/52/d31eb4894f69969b24d075e0d33c/favicon.png=s180",
+    "site": "https://www.google.com"
+  },
+  "huawei": {
+    "src": "/logos/huawei.png",
+    "source": "https://www.huawei.com/-/media/htemplate-home/1.0.1.20251205144752/components/assets/img/apple-touch-icon-precomposed-180.png",
+    "site": "https://www.huawei.com"
+  },
+  "meta": {
+    "src": "/logos/meta.svg",
+    "source": "https://static.xx.fbcdn.net/rsrc.php/yf/r/-7pQO6hUGK_.svg",
+    "site": "https://about.meta.com"
+  },
+  "microsoft": {
+    "src": "/logos/microsoft.ico",
+    "source": "https://www.microsoft.com/favicon.ico?v2",
+    "site": "https://www.microsoft.com"
+  },
+  "netflix": {
+    "src": "/logos/netflix.png",
+    "source": "https://about.netflix.com/images/logo.png",
+    "site": "https://www.netflix.com"
+  },
+  "nvidia": {
+    "src": "/logos/nvidia.svg",
+    "source": "https://www.nvidia.com/en-us/ (inline header logo SVG)",
+    "site": "https://www.nvidia.com"
+  },
+  "openai": {
+    "src": "/logos/openai.svg",
+    "source": "https://openai.com/favicon.svg (fixed light colours, cropped to the mark)",
+    "site": "https://openai.com"
+  },
+  "samsung": {
+    "src": "/logos/samsung.png",
+    "source": "https://resources.samsung.com/etc.clientlibs/samsung/clientlibs/consumer/global/clientlib-common/resources/images/app_ico.png",
+    "site": "https://www.samsung.com"
+  },
+  "tesla": {
+    "src": "/logos/tesla.png",
+    "source": "https://www.tesla.com/themes/custom/tesla_frontend/assets/favicons/favicon-196x196.png",
+    "site": "https://www.tesla.com"
+  },
+  "tiktok": {
+    "src": "/logos/tiktok.png",
+    "source": "https://www.tiktok.com/apple-touch-icon.png",
+    "site": "https://www.tiktok.com"
+  }
+}

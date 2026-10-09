@@ -72,7 +72,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-8 text-sm text-foreground/60">
           <span>Zeitgeist · built for Monad Metropolis</span>
           <span className="flex gap-4">
-            <span>Test markets with test money. Nothing here is investment advice.</span>
+            <span>Test markets with test money. Nothing here is investment advice. Company logos are trademarks of their owners, shown only to identify them.</span>
           </span>
         </div>
       </footer>

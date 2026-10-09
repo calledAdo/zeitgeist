@@ -98,3 +98,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-mesh-1, .animate-mesh-2, .animate-mesh-3 { animation: none; }
 }
+
+/* entity avatars: the flag/company badge only where there's room for it */
+@container (max-width: 47px) {
+  .zg-badge { display: none; }
+}
