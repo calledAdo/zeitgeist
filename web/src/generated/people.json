@@ -1,0 +1,20 @@
+{
+  "trump": { "src": "/people/trump.jpg", "source": "https://www.whitehouse.gov/administration/donald-j-trump/", "credit": "Official Presidential Portrait, The White House" },
+  "modi": { "src": "/people/modi.jpg", "source": "https://x.com/narendramodi", "credit": "Profile photo, @narendramodi" },
+  "xi": { "src": "/people/xi.jpg", "source": "https://english.www.gov.cn/news/topnews/202303/10/content_WS640b5070c6d0a757729e7f51.html", "credit": "The State Council of the PRC" },
+  "carney": { "src": "/people/carney.jpg", "source": "https://www.pm.gc.ca/en/mark-carney", "credit": "Prime Minister of Canada" },
+  "netanyahu": { "src": "/people/netanyahu.jpg", "source": "https://x.com/netanyahu", "credit": "Profile photo, @netanyahu" },
+  "zelensky": { "src": "/people/zelensky.jpg", "source": "https://x.com/ZelenskyyUa", "credit": "Profile photo, @ZelenskyyUa" },
+  "merz": { "src": "/people/merz.jpg", "source": "https://www.bundeskanzler.de/bk-en/friedrich-merz", "credit": "Official portrait, The Federal Chancellor" },
+  "macron": { "src": "/people/macron.jpg", "source": "https://www.elysee.fr/en/emmanuel-macron", "credit": "Élysée" },
+  "milei": { "src": "/people/milei.jpg", "source": "https://x.com/JMilei", "credit": "Profile photo, @JMilei" },
+  "starmer": { "src": "/people/starmer.jpg", "source": "https://members.parliament.uk/member/4514/portrait", "credit": "UK Parliament official portrait (CC BY 3.0)" },
+  "ramaphosa": { "src": "/people/ramaphosa.jpg", "source": "https://x.com/CyrilRamaphosa", "credit": "Profile photo, @CyrilRamaphosa" },
+  "erdogan": { "src": "/people/erdogan.jpg", "source": "https://www.tccb.gov.tr/en/receptayyiperdogan/biography/", "credit": "Presidency of the Republic of Türkiye" },
+  "zuckerberg": { "src": "/people/zuckerberg.jpg", "source": "https://www.meta.com/about/leadership/mark-zuckerberg/", "credit": "Meta" },
+  "amodei": { "src": "/people/amodei.jpg", "source": "https://x.com/DarioAmodei", "credit": "Profile photo, @DarioAmodei" },
+  "altman": { "src": "/people/altman.jpg", "source": "https://x.com/sama", "credit": "Profile photo, @sama" },
+  "gates": { "src": "/people/gates.jpg", "source": "https://x.com/BillGates", "credit": "Profile photo, @BillGates" },
+  "cook": { "src": "/people/cook.jpg", "source": "https://www.apple.com/leadership/tim-cook/", "credit": "Apple Leadership" },
+  "huang": { "src": "/people/huang.jpg", "source": "https://nvidianews.nvidia.com/bios/jensen-huang", "credit": "NVIDIA Newsroom" }
+}

@@ -1,14 +1,16 @@
 import logos from "@/generated/logos.json";
+import people from "@/generated/people.json";
 import { cn } from "@/lib/utils";
 
 /**
  * Companies: the company's own logo (fetched from its own site, see scripts/fetch-logos.mjs).
- * People: a designed avatar — initials on a per-name tint, with a badge: the country flag for heads of
- * state, the company logo for tech personalities. No photos.
+ * People: an official portrait (government site, company leadership page, or the person's own verified
+ * account; sources in src/generated/people.json). Monogram fallback where none is available yet.
  * Colour carries meaning: logos sit in greyscale and turn to full colour when the name runs hot (heat ≥ +1);
  * avatars get an emerald ring.
  */
 const LOGOS = logos as Record<string, { src: string }>;
+const PEOPLE = people as Record<string, { src: string; credit: string }>;
 
 // heads of state → ISO country (rendered as the flag emoji)
 const COUNTRY: Record<string, string> = {
@@ -46,6 +48,18 @@ export function EntityImage({
     );
   }
 
+  const photo = entityKey ? PEOPLE[entityKey] : undefined;
+  if (photo) {
+    return (
+      <div className={cn("overflow-hidden bg-foreground/5", rounded, className)}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photo.src} alt={name} title={photo.credit} loading="lazy"
+          className={cn("size-full object-cover object-top transition-[filter] duration-500", hot ? "grayscale-0" : "grayscale group-hover:grayscale-0")} />
+      </div>
+    );
+  }
+
+  // no usable photo yet: monogram fallback
   const initials = name.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
   const h = hue(entityKey ?? name);
   const iso = entityKey ? COUNTRY[entityKey] : undefined;

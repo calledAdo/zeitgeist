@@ -100,7 +100,7 @@ export function Board({ category }: { category: CategoryKey }) {
       {(error || snapError) && <p className="mt-6 rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3 text-sm text-red-600">{error ?? `Couldn't load the news snapshot: ${snapError}`}</p>}
 
       <div className="mt-10 flex items-center justify-between gap-4">
-        <p className="text-sm text-foreground/60">Sorted by funding target. Logos turn to colour and avatars get a green ring when a name runs hot.</p>
+        <p className="text-sm text-foreground/60">Sorted by funding target. Photos and logos turn to colour when a name runs hot.</p>
         <div className="inline-flex rounded-lg border border-foreground/10 p-0.5" role="group" aria-label="Board layout">
           {([["grid", LayoutGrid, "Grid"], ["table", Rows3, "Table"]] as const).map(([v, Icon, label]) => (
             <button key={v} onClick={() => pickView(v)} aria-pressed={view === v} aria-label={label}
